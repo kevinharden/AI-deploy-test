@@ -19,7 +19,12 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "crc.h"
+#include "dcmi.h"
+#include "dma.h"
 #include "quadspi.h"
+#include "sdmmc.h"
+#include "spi.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -50,7 +55,6 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MPU_Config(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -69,9 +73,6 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
-
-  /* MPU Configuration--------------------------------------------------------*/
-  MPU_Config();
 /* Enable the CPU Cache */
 
   /* Enable I-Cache---------------------------------------------------------*/
@@ -98,8 +99,13 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_CRC_Init();
+  MX_DMA_Init();
   MX_QUADSPI_Init();
+  MX_DCMI_Init();
+  MX_SDMMC1_SD_Init();
+  MX_USART1_UART_Init();
+  MX_CRC_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -123,6 +129,7 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_CRSInitTypeDef RCC_CRSInitStruct = {0};
 
   /** Supply configuration update enable
   */
@@ -139,19 +146,27 @@ void SystemClock_Config(void)
 
   while(!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {}
 
+  /** Configure LSE Drive Capability
+  */
+  HAL_PWR_EnableBkUpAccess();
+  __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
+
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48|RCC_OSCILLATORTYPE_HSE
+                              |RCC_OSCILLATORTYPE_LSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.LSEState = RCC_LSE_ON;
+  RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 5;
   RCC_OscInitStruct.PLL.PLLN = 192;
   RCC_OscInitStruct.PLL.PLLP = 2;
-  RCC_OscInitStruct.PLL.PLLQ = 20;
+  RCC_OscInitStruct.PLL.PLLQ = 5;
   RCC_OscInitStruct.PLL.PLLR = 2;
-  RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_0;
+  RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_2;
   RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
   RCC_OscInitStruct.PLL.PLLFRACN = 0;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -176,40 +191,26 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+
+  /** Enable the SYSCFG APB clock
+  */
+  __HAL_RCC_CRS_CLK_ENABLE();
+
+  /** Configures CRS
+  */
+  RCC_CRSInitStruct.Prescaler = RCC_CRS_SYNC_DIV1;
+  RCC_CRSInitStruct.Source = RCC_CRS_SYNC_SOURCE_LSE;
+  RCC_CRSInitStruct.Polarity = RCC_CRS_SYNC_POLARITY_RISING;
+  RCC_CRSInitStruct.ReloadValue = __HAL_RCC_CRS_RELOADVALUE_CALCULATE(48000000,32768);
+  RCC_CRSInitStruct.ErrorLimitValue = 34;
+  RCC_CRSInitStruct.HSI48CalibrationValue = 32;
+
+  HAL_RCCEx_CRSConfig(&RCC_CRSInitStruct);
 }
 
 /* USER CODE BEGIN 4 */
 
 /* USER CODE END 4 */
-
-/* MPU Configuration */
-
-void MPU_Config(void)
-{
-  MPU_Region_InitTypeDef MPU_InitStruct = {0};
-
-  /* Disables the MPU */
-  HAL_MPU_Disable();
-
-  /** Initializes and configures the Region and the memory to be protected
-  */
-  MPU_InitStruct.Enable = MPU_REGION_ENABLE;
-  MPU_InitStruct.Number = MPU_REGION_NUMBER0;
-  MPU_InitStruct.BaseAddress = 0x0;
-  MPU_InitStruct.Size = MPU_REGION_SIZE_4GB;
-  MPU_InitStruct.SubRegionDisable = 0x87;
-  MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
-  MPU_InitStruct.AccessPermission = MPU_REGION_NO_ACCESS;
-  MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_DISABLE;
-  MPU_InitStruct.IsShareable = MPU_ACCESS_SHAREABLE;
-  MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
-  MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
-
-  HAL_MPU_ConfigRegion(&MPU_InitStruct);
-  /* Enables the MPU */
-  HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
-
-}
 
 /**
   * @brief  This function is executed in case of error occurrence.
