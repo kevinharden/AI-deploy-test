@@ -24,6 +24,7 @@ ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpi
 ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma.h
 ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma_ex.h
 ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h
+ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dcmi.h
 ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h
 ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h
 ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc.h
@@ -36,3 +37,11 @@ ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c
 ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr.h
 ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h
 ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_qspi.h
+ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_sd.h
+ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_sdmmc.h
+ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_delayblock.h
+ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_sd_ex.h
+ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h
+ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h
+ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
+ai-deployment-test\gpio.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
