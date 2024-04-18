@@ -1,4 +1,4 @@
-ai-deployment-test\system_stm32h7xx.o: ../Core/Src/system_stm32h7xx.c
+ai-deployment-test\system_stm32h7xx.o: ..\Core\Src\system_stm32h7xx.c
 ai-deployment-test\system_stm32h7xx.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h
 ai-deployment-test\system_stm32h7xx.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h750xx.h
 ai-deployment-test\system_stm32h7xx.o: ../Drivers/CMSIS/Include/core_cm7.h

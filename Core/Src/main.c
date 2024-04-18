@@ -39,7 +39,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define u8 uint8_t
+#define u16 uint16_t
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
