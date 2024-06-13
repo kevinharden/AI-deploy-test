@@ -23,16 +23,19 @@
 #include "dma.h"
 #include "quadspi.h"
 #include "sdmmc.h"
-#include "sdmmc_sdcard.h"
 #include "spi.h"
 #include "usart.h"
 #include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "sdmmc_sdcard.h"
 #include "lcd.h"
 #include "ov5640.h"
 #include <w25qxx.h>
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-
+#include "text.h"
+#include "GBK_LibDrive.h"
+#include "OV_Frame.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -194,7 +197,6 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-  RCC_CRSInitTypeDef RCC_CRSInitStruct = {0};
 
   /** Supply configuration update enable
   */
@@ -211,19 +213,11 @@ void SystemClock_Config(void)
 
   while(!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {}
 
-  /** Configure LSE Drive Capability
-  */
-  HAL_PWR_EnableBkUpAccess();
-  __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
-
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48|RCC_OSCILLATORTYPE_HSE
-                              |RCC_OSCILLATORTYPE_LSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
-  RCC_OscInitStruct.LSEState = RCC_LSE_ON;
-  RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 5;
@@ -256,21 +250,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-
-  /** Enable the SYSCFG APB clock
-  */
-  __HAL_RCC_CRS_CLK_ENABLE();
-
-  /** Configures CRS
-  */
-  RCC_CRSInitStruct.Prescaler = RCC_CRS_SYNC_DIV1;
-  RCC_CRSInitStruct.Source = RCC_CRS_SYNC_SOURCE_LSE;
-  RCC_CRSInitStruct.Polarity = RCC_CRS_SYNC_POLARITY_RISING;
-  RCC_CRSInitStruct.ReloadValue = __HAL_RCC_CRS_RELOADVALUE_CALCULATE(48000000,32768);
-  RCC_CRSInitStruct.ErrorLimitValue = 34;
-  RCC_CRSInitStruct.HSI48CalibrationValue = 32;
-
-  HAL_RCCEx_CRSConfig(&RCC_CRSInitStruct);
 }
 
 /* USER CODE BEGIN 4 */
