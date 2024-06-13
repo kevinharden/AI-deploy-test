@@ -780,7 +780,7 @@ void GBK_LibFont_Test(void)
   GBK_Show_Str(16,128,240,24,"ASCII 64x32×Ö¿â£º",24,D_Color,B_Color,0);	//ÏÔÊ¾×Ö·û´®
   DrawFontASC_GBK64B(16,152,BLUE,"64");
 		
-	delay_ms(2000);	
+	HAL_Delay(2000);	
 }
 
 

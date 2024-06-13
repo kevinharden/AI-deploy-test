@@ -1,6 +1,6 @@
-ai-deployment-test\dis_picture.o: ..\Core\Src\Dis_Picture.c
-ai-deployment-test\dis_picture.o: ../Core/Inc/Dis_Picture.h
-ai-deployment-test\dis_picture.o: ../Core/Inc/lcd.h
+ai-deployment-test\dis_picture.o: ..\Drivers\LCD240\Dis_Picture.c
+ai-deployment-test\dis_picture.o: ..\Drivers\LCD240\Dis_Picture.h
+ai-deployment-test\dis_picture.o: ..\Drivers\LCD240\lcd.h
 ai-deployment-test\dis_picture.o: ../Core/Inc/main.h
 ai-deployment-test\dis_picture.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h
 ai-deployment-test\dis_picture.o: ../Core/Inc/stm32h7xx_hal_conf.h
@@ -47,3 +47,7 @@ ai-deployment-test\dis_picture.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_
 ai-deployment-test\dis_picture.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
 ai-deployment-test\dis_picture.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
 ai-deployment-test\dis_picture.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stdlib.h
+ai-deployment-test\dis_picture.o: ..\Drivers\LCD240\Text.h
+ai-deployment-test\dis_picture.o: ..\Drivers\LCD240\font.h
+ai-deployment-test\dis_picture.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\string.h
+ai-deployment-test\dis_picture.o: ..\Drivers\LCD240\Picture.h

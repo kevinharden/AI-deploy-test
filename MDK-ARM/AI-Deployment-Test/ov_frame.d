@@ -48,7 +48,7 @@ ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal
 ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
 ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/sccb.h
-ai-deployment-test\ov_frame.o: ../Core/Inc/LCD.h
+ai-deployment-test\ov_frame.o: ..\Drivers\LCD240\LCD.h
 ai-deployment-test\ov_frame.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stdlib.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/Dis_Picture.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/Text.h
@@ -58,4 +58,6 @@ ai-deployment-test\ov_frame.o: ../Core/Inc/Picture.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/GBK_LibDrive.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/usart.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/dcmi.h
+ai-deployment-test\ov_frame.o: ../Core/Inc/key.h
+ai-deployment-test\ov_frame.o: ../Core/Inc/led.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/dma.h

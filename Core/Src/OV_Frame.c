@@ -1,6 +1,5 @@
 
 #include "OV_Frame.h"
-//#include "key.h"
 #include "LCD.h"
 #include "Dis_Picture.h" 
 #include "Text.h"	
@@ -10,7 +9,8 @@
 
 #include "ov5640.h"
 #include "dcmi.h"
-
+#include "key.h"
+#include "led.h"
 #include "dma.h"
 
 #include "usart.h"

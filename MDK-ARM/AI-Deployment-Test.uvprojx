@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32H750xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include;../Middlewares/ST/AI/Inc;../X-CUBE-AI/App</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include;../Middlewares/ST/AI/Inc;../X-CUBE-AI/App;..\Drivers\LCD240</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -362,7 +362,7 @@
             </VariousControls>
           </Aads>
           <LDads>
-            <umfTarg>0</umfTarg>
+            <umfTarg>1</umfTarg>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
             <noStLib>0</noStLib>
@@ -705,11 +705,6 @@
               <FilePath>../Core/Src/stm32h7xx_hal_msp.c</FilePath>
             </File>
             <File>
-              <FileName>lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\lcd.c</FilePath>
-            </File>
-            <File>
               <FileName>OV_Frame.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\OV_Frame.c</FilePath>
@@ -725,11 +720,6 @@
               <FilePath>..\Core\Src\sdmmc_sdcard.c</FilePath>
             </File>
             <File>
-              <FileName>system_stm32h7xx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\system_stm32h7xx.c</FilePath>
-            </File>
-            <File>
               <FileName>sccb.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\sccb.c</FilePath>
@@ -738,6 +728,21 @@
               <FileName>GBK_LibDrive.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\GBK_LibDrive.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>w25qxx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\w25qxx.c</FilePath>
+            </File>
+            <File>
+              <FileName>key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\key.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1804,6 +1809,36 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Drivers/LCD240</GroupName>
+          <Files>
+            <File>
+              <FileName>Dis_Picture.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\LCD240\Dis_Picture.c</FilePath>
+            </File>
+            <File>
+              <FileName>FONT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\LCD240\FONT.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\LCD240\lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>Picture.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\LCD240\Picture.c</FilePath>
+            </File>
+            <File>
+              <FileName>Text.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\LCD240\Text.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
@@ -1822,5 +1857,14 @@
     </components>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>AI-Deployment-Test</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>

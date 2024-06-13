@@ -36,12 +36,15 @@ extern UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN Private defines */
 
+extern DMA_HandleTypeDef hdma_usart1_tx;	
+#define RXBUFFERSIZE   1            //缓存大小	 	
+#define USART_REC_LEN  		128     	//定义最大接收字节数 128
 /* USER CODE END Private defines */
 
 void MX_USART1_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void USART1_BaudRate_Init(uint32_t COM1_BaudRate);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

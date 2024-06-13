@@ -45,7 +45,7 @@ ai-deployment-test\gbk_libdrive.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx
 ai-deployment-test\gbk_libdrive.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h
 ai-deployment-test\gbk_libdrive.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
 ai-deployment-test\gbk_libdrive.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
-ai-deployment-test\gbk_libdrive.o: ../Core/Inc/lcd.h
+ai-deployment-test\gbk_libdrive.o: ..\Drivers\LCD240\lcd.h
 ai-deployment-test\gbk_libdrive.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stdlib.h
 ai-deployment-test\gbk_libdrive.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\string.h
 ai-deployment-test\gbk_libdrive.o: ../Core/Inc/usart.h

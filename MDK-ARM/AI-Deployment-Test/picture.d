@@ -1,6 +1,6 @@
-ai-deployment-test\picture.o: ..\Core\Src\Picture.c
-ai-deployment-test\picture.o: ../Core/Inc/Picture.h
-ai-deployment-test\picture.o: ../Core/Inc/lcd.h
+ai-deployment-test\picture.o: ..\Drivers\LCD240\Picture.c
+ai-deployment-test\picture.o: ..\Drivers\LCD240\Picture.h
+ai-deployment-test\picture.o: ..\Drivers\LCD240\lcd.h
 ai-deployment-test\picture.o: ../Core/Inc/main.h
 ai-deployment-test\picture.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h
 ai-deployment-test\picture.o: ../Core/Inc/stm32h7xx_hal_conf.h

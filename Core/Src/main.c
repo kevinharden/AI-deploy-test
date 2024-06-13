@@ -28,7 +28,8 @@
 #include "usart.h"
 #include "gpio.h"
 #include "lcd.h"
-
+#include "ov5640.h"
+#include <w25qxx.h>
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -41,8 +42,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define u8 uint8_t
-#define u16 uint16_t
 extern uint8_t USB_STATUS_REG; //USB状态
 extern uint8_t  bDeviceState;		//默认没有连接 
 
@@ -131,6 +130,8 @@ LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
 	GBK_Lib_Init();        //硬件GBK字库初始化--(如果使用不带字库的液晶屏版本，此处可以屏蔽，不做字库初始化）
 	LCD_Clear(WHITE);      //清屏  	
 	
+	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_1,GPIO_PIN_RESET);
+	
 	 Draw_Font16B(16,10,RED,"  STM32H7 DCMI OV5640 ");
 	 Draw_Font16B(16,30,BLUE,"     嵌入式开发网   ");	 
 	 Draw_Font16B(16,50,BLUE," mcudev.taobao.com  "); 
@@ -167,9 +168,9 @@ LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
     while(OV5640_Init())//初始化OV5640
     {
         Draw_Font16B(24,200,RED,"OV5640 ERROR");
-        delay_ms(200);
+        HAL_Delay(200);
         Draw_Font16B(24,200,RED,"             ");
-        delay_ms(200);
+        HAL_Delay(200);
         //LED2_Toggle;
     }
   /* USER CODE END 2 */
