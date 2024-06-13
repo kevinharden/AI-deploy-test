@@ -49,6 +49,9 @@ ai-deployment-test\main.o: ../Core/Inc/dcmi.h
 ai-deployment-test\main.o: ../Core/Inc/dma.h
 ai-deployment-test\main.o: ../Core/Inc/quadspi.h
 ai-deployment-test\main.o: ../Core/Inc/sdmmc.h
+ai-deployment-test\main.o: ../Core/Inc/sdmmc_sdcard.h
 ai-deployment-test\main.o: ../Core/Inc/spi.h
 ai-deployment-test\main.o: ../Core/Inc/usart.h
 ai-deployment-test\main.o: ../Core/Inc/gpio.h
+ai-deployment-test\main.o: ../Core/Inc/lcd.h
+ai-deployment-test\main.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stdlib.h
