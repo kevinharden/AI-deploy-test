@@ -1,0 +1,4 @@
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\applications\Keil 5\ARM\ARMCC\Bin'
+Build target 'AI-Deployment-Test'
+Note: source file '../Core/Src/system_stm32h7xx.c' - object file renamed from 'AI-Deployment-Test\system_stm32h7xx.o' to 'AI-Deployment-Test\system_stm32h7xx_1.o'.Note: source file '..\Drivers\LCD240\lcd.c' - object file renamed from 'AI-Deployment-Test\lcd.o' to 'AI-Deployment-Test\lcd_1.o'."AI-Deployment-Test\AI-Deployment-Test.axf" - 0 Error(s), 0 Warning(s).
+Build Time Elapsed:  00:00:01
