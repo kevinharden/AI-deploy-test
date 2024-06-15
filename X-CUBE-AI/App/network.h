@@ -188,7 +188,7 @@ ai_bool ai_network_init(
  */
 AI_API_ENTRY
 ai_error ai_network_create_and_init(
-  ai_handle* network, const ai_handle activations[], const ai_handle weights[]);
+  ai_handle* network, const  ai_handle activations[], const ai_handle weights[]);
 
 /*!
  * @brief Get network inputs array pointer as a ai_buffer array pointer.
