@@ -64,3 +64,8 @@ ai-deployment-test\main.o: ../Core/Inc/font.h
 ai-deployment-test\main.o: ../Core/Inc/GBK_LibDrive.h
 ai-deployment-test\main.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\string.h
 ai-deployment-test\main.o: ../Core/Inc/OV_Frame.h
+ai-deployment-test\main.o: ../X-CUBE-AI/App/network.h
+ai-deployment-test\main.o: ../X-CUBE-AI/App/network_config.h
+ai-deployment-test\main.o: ../Middlewares/ST/AI/Inc/ai_platform.h
+ai-deployment-test\main.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\inttypes.h
+ai-deployment-test\main.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stdbool.h

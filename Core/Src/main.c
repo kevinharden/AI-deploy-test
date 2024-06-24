@@ -136,53 +136,69 @@ LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
 	
 	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_1,GPIO_PIN_RESET);
 	
-	ai_network_create_and_init(
-  ai_handle* network, const ai_handle activations[], const ai_handle weights[]);
-	
-	
-	
-	
-//	 Draw_Font16B(16,10,RED,"  STM32H7 DCMI OV5640 ");
-//	 Draw_Font16B(16,30,BLUE,"     嵌入式开发网   ");	 
-//	 Draw_Font16B(16,50,BLUE," mcudev.taobao.com  "); 
-//	 
-
-//	if(W25QXX_ReadID()!=W25Q64)
-//		Draw_Font16B(16,80,RED,"W25Q64 Error!");	//检测W25Q128错误
-//	else //SPI FLASH 正常
-//	{   														 
-//		Draw_Font16B(16,80,BLUE,"W25Q64 OK OK OK ");	 
-//		Draw_Font16B(16,100,BLUE,"SPI FLASH Size:8MB");	 
-//	} 
-
+//	ai_network_create_and_init(
+//  ai_handle* network, const ai_handle activations[], const ai_handle weights[]);
 //	
-//	  while(SD_Init())//检测不到SD卡
-//    {
-//        Draw_Font16B(16,140,RED,"SD Card Error!");
-//			  Draw_Font16B(16,160,RED,"Please Check! ");
-//        HAL_Delay(500);
-//        Draw_Font16B(16,160,RED,"               ");
-//        HAL_Delay(500);
+	
+	
+	
+	 Draw_Font16B(16,10,RED,"  STM32H7 DCMI OV5640 ");
+	 Draw_Font16B(16,30,BLUE,"     嵌入式开发网   ");	 
+	 Draw_Font16B(16,50,BLUE," mcudev.taobao.com  "); 
+	 
 
-//    }
-//		
-//		
-//                                       
-//    Draw_Font16B(16,140,BLUE,"SD Card OK    "); //检测SD卡成功
-//		
-//		sprintf((char*)Textbuf,"SD Card Size: %u MB",SDCardInfo.CardCapacity>>20); //显示无符号十进制整数		
-//   
-//		Draw_Font16B(16,160,BLUE,Textbuf);  				//显示存储卡容量
+	if(W25QXX_ReadID()!=W25Q64)
+		Draw_Font16B(16,80,RED,"W25Q64 Error!");	//检测W25Q128错误
+	else //SPI FLASH 正常
+	{   														 
+		Draw_Font16B(16,80,BLUE,"W25Q64 OK OK OK ");	 
+		Draw_Font16B(16,100,BLUE,"SPI FLASH Size:8MB");	 
+	} 
+
+	
+	  while(SD_Init())//检测不到SD卡
+    {
+        Draw_Font16B(16,140,RED,"SD Card Error!");
+			  Draw_Font16B(16,160,RED,"Please Check! ");
+        HAL_Delay(500);
+        Draw_Font16B(16,160,RED,"               ");
+        HAL_Delay(500);
+
+    }
+		
+		
+                                       
+    Draw_Font16B(16,140,BLUE,"SD Card OK    "); //检测SD卡成功
+		
+		sprintf((char*)Textbuf,"SD Card Size: %u MB",SDCardInfo.CardCapacity>>20); //显示无符号十进制整数		
+   
+		Draw_Font16B(16,160,BLUE,Textbuf);  				//显示存储卡容量
 
 
-//    while(OV5640_Init())//初始化OV5640
-//    {
-//        Draw_Font16B(24,200,RED,"OV5640 ERROR");
-//        HAL_Delay(200);
-//        Draw_Font16B(24,200,RED,"             ");
-//        HAL_Delay(200);
-//        //LED2_Toggle;
-//    }
+    while(OV5640_Init())//初始化OV5640
+    {
+        Draw_Font16B(24,200,RED,"OV5640 ERROR");
+        HAL_Delay(200);
+        Draw_Font16B(24,200,RED,"             ");
+        HAL_Delay(200);
+        //LED2_Toggle;
+    }
+		
+		if(Camera_ID!=OV5640_ID)
+			   sprintf((char*)Print_buf,"Camera_ID: ERR");
+			else 
+				 sprintf((char*)Print_buf,"Camera_ID: 0x%4X",Camera_ID);
+				
+		 Draw_Font16B(24,200,BLUE,Print_buf);//显示提示内容
+
+     Draw_Font16B(24,220,BLUE,"OV5640 OK");	
+
+
+
+
+	 // MX_USB_DEVICE_Init();//  先屏蔽前面初始化部分，等其他模块都初始化后，再启动USB工作
+		
+		HAL_Delay(1000);		
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -192,7 +208,23 @@ LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+		key_F=KEY_Scan(0); 		//得到键值   //按键扫描测试函数
+		
+		OV_Camera_Demo(key_F);//选择摄像头工作模式演示	
+		
+////		   Demo_Menu();//测试LCD 2寸高清屏
+	
+////		   delay_ms(500);
+////		   printf("\r\n串口1 发送的消息:\r\n");
+		
+
+		
+		
+		
+		
+		
   }
+
   /* USER CODE END 3 */
 }
 

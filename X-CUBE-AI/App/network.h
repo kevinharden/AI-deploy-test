@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    network.h
   * @author  AST Embedded Analytics Research Platform
-  * @date    Thu Jun 13 17:09:49 2024
+  * @date    Sun Jun 23 17:43:10 2024
   * @brief   AI Tool Automatic Code Generator for Embedded NN computing
   ******************************************************************************
   * @attention
@@ -188,7 +188,7 @@ ai_bool ai_network_init(
  */
 AI_API_ENTRY
 ai_error ai_network_create_and_init(
-  ai_handle* network, const  ai_handle activations[], const ai_handle weights[]);
+  ai_handle* network, const ai_handle activations[], const ai_handle weights[]);
 
 /*!
  * @brief Get network inputs array pointer as a ai_buffer array pointer.
