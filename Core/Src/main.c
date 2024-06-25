@@ -210,7 +210,7 @@ LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
     /* USER CODE BEGIN 3 */
 		key_F=KEY_Scan(0); 		//得到键值   //按键扫描测试函数
 		
-		OV_Camera_Demo(key_F);//选择摄像头工作模式演示	
+		OV_Camera_Demo(1);//选择摄像头工作模式演示	
 		
 ////		   Demo_Menu();//测试LCD 2寸高清屏
 	

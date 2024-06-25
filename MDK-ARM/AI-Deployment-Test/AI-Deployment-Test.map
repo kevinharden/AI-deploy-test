@@ -5941,7 +5941,7 @@ Image Symbol Table
     W25QXX_Write_Enable                      0x0800da45   Thumb Code    56  w25qxx.o(i.W25QXX_Write_Enable)
     W25QXX_Write_SR                          0x0800da81   Thumb Code   104  w25qxx.o(i.W25QXX_Write_SR)
     _is_digit                                0x0800db25   Thumb Code    14  __printf_wp.o(i._is_digit)
-    main                                     0x0800db35   Thumb Code   704  main.o(i.main)
+    main                                     0x0800db35   Thumb Code   702  main.o(i.main)
     _fp_init                                 0x0800df39   Thumb Code    10  fpinit.o(x$fpl$fpinit)
     __fplib_config_fpu_vfp                   0x0800df41   Thumb Code     0  fpinit.o(x$fpl$fpinit)
     __fplib_config_pureend_doubles           0x0800df41   Thumb Code     0  fpinit.o(x$fpl$fpinit)
@@ -6484,7 +6484,7 @@ Image component sizes
        356         20          0          0          0       1095   gpio.o
        124         14          0          3          0        870   key.o
       1572         82          0          8         14      13386   lcd_1.o
-      1346        336          0          5         32      39220   main.o
+      1346        338          0          5         32      39220   main.o
       1616         62       5389          2          0      11574   ov5640.o
       1656        416        193        126     236048    1359749   ov_frame.o
        528         44          0          0         76       4036   quadspi.o
@@ -6519,7 +6519,7 @@ Image component sizes
        520         32          0          3          0       3979   w25qxx.o
 
     ----------------------------------------------------------------------
-     54876       2612      15172        176     497872    1707009   Object Totals
+     54876       2614      15172        176     497872    1707009   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         46          0          4          3     256090          0   (incl. Padding)
 
@@ -6588,9 +6588,9 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     56490       2660      15214        176     497968    1680825   Grand Totals
-     56490       2660      15214        176     497968    1680825   ELF Image Totals
-     56490       2660      15214        176          0          0   ROM Totals
+     56490       2662      15214        176     497968    1680825   Grand Totals
+     56490       2662      15214        176     497968    1680825   ELF Image Totals
+     56490       2662      15214        176          0          0   ROM Totals
 
 ==============================================================================
 
