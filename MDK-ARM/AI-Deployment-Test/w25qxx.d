@@ -46,4 +46,5 @@ ai-deployment-test\w25qxx.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_s
 ai-deployment-test\w25qxx.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
 ai-deployment-test\w25qxx.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
 ai-deployment-test\w25qxx.o: ../Core/Inc/quadspi.h
+ai-deployment-test\w25qxx.o: ../Core/Inc/delay.h
 ai-deployment-test\w25qxx.o: ../Core/Inc/usart.h

@@ -31,7 +31,7 @@
 #define W25Q80 	0XEF13 	
 #define W25Q16 	0XEF14
 #define W25Q32 	0XEF15
-#define W25Q64 	0X0F16
+#define W25Q64 	0XEF16
 #define W25Q128	0XEF17
 #define W25Q256 0XEF18
 

@@ -8,6 +8,7 @@
 "ai-deployment-test\led.o"
 "ai-deployment-test\w25qxx.o"
 "ai-deployment-test\key.o"
+"ai-deployment-test\delay.o"
 "ai-deployment-test\main.o"
 "ai-deployment-test\gpio.o"
 "ai-deployment-test\crc.o"

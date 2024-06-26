@@ -1,6 +1,6 @@
 Neural Network Tools for STM32 family v1.7.0 (stm.ai v8.1.0-19520)
-Created date          : 2024-06-23 17:43:12
-Parameters            : generate --name network -m D:/GIT Repo/stm32ai-modelzoo-for-me/image_classification/scripts/training/outputs/2024_03_10_22_11_16/quantized_models/quantized_model.tflite --type tflite --compression none --verbosity 1 --workspace C:\Users\kevin\AppData\Local\Temp\mxAI_workspace2675397478490016370178381330021864 --output C:\Users\kevin\.stm32cubemx\network_output --allocate-inputs --series stm32h7 --allocate-outputs --binary --address 0X90000000
+Created date          : 2024-06-26 21:21:56
+Parameters            : generate --name network -m D:/GIT Repo/stm32ai-modelzoo-for-me/image_classification/scripts/training/outputs/2024_03_10_22_11_16/quantized_models/quantized_model.tflite --type tflite --compression none --verbosity 1 --workspace C:\Users\kevin\AppData\Local\Temp\mxAI_workspace63536187565009030005071467316333 --output C:\Users\kevin\.stm32cubemx\network_output --allocate-inputs --series stm32h7 --allocate-outputs --binary --address 0X90000000
 
 Exec/report summary (generate)
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -11,7 +11,7 @@ compression        :   none
 options            :   allocate-inputs, allocate-outputs                                                                                                               
 optimization       :   balanced                                                                                                                                        
 target/series      :   stm32h7                                                                                                                                         
-workspace dir      :   C:\Users\kevin\AppData\Local\Temp\mxAI_workspace2675397478490016370178381330021864                                                              
+workspace dir      :   C:\Users\kevin\AppData\Local\Temp\mxAI_workspace63536187565009030005071467316333                                                                
 output dir         :   C:\Users\kevin\.stm32cubemx\network_output                                                                                                      
 model_fmt          :   ss/sa per channel                                                                                                                               
 model_name         :   quantized_model                                                                                                                                 
