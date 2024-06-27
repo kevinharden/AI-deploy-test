@@ -49,4 +49,5 @@ ai-deployment-test\ov5640.o: ../Core/Inc/sccb.h
 ai-deployment-test\ov5640.o: ../Core/Inc/ov5640.h
 ai-deployment-test\ov5640.o: ../Core/Inc/ov5640cfg.h
 ai-deployment-test\ov5640.o: ../Core/Inc/ov5640af.h
+ai-deployment-test\ov5640.o: ../Core/Inc/delay.h
 ai-deployment-test\ov5640.o: ../Core/Inc/usart.h

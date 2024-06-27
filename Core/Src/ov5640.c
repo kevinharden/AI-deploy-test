@@ -1,10 +1,15 @@
 
+
+
+
+
+
 #include "main.h"
 #include "ov5640.h"
 #include "ov5640cfg.h"
 #include "ov5640af.h"
 	  
-//#include "delay.h"
+#include "delay.h"
 #include "usart.h"			 
 #include "sccb.h"	
 
@@ -148,19 +153,19 @@ u8 OV5640_Init(void)
 	
 	OV5640_RST(0);			//必须先拉低OV5640的RST脚,再上电
 	
-	HAL_Delay(20); 
+	delay_ms(20); 
 	
 	OV5640_PWDN_Set(0);		//POWER ON
 	
-	HAL_Delay(5);  
+	delay_ms(5);  
 	
 	OV5640_RST(1);			//结束复位 
 	
-	HAL_Delay(20); 
+	delay_ms(20); 
 	
   SCCB_Init();			//初始化SCCB 的IO口 
 	
-	HAL_Delay(5); 
+	delay_ms(5); 
 	
 	Camera_ID=OV5640_RD_Reg(OV5640_CHIPIDH);	//读取ID 高八位
 	Camera_ID<<=8;
@@ -176,7 +181,7 @@ u8 OV5640_Init(void)
 	OV5640_WR_Reg(0X3008,0X82);	//软复位
 	
 	
-	HAL_Delay(10);
+	delay_ms(10);
 	
  	//初始化 OV5640,采用SXGA分辨率(1600*1200) 
 	
@@ -187,7 +192,7 @@ u8 OV5640_Init(void)
   
 	//检查闪光灯是否正常
 	OV5640_Flash_Ctrl(1);//打开闪光灯
-	HAL_Delay(50);
+	delay_ms(50);
 	OV5640_Flash_Ctrl(0);//关闭闪光灯
   
 	return 0x00; 	//ok
@@ -740,7 +745,7 @@ u8 OV5640_Focus_Init(void)
 	do
 	{
 		state=OV5640_RD_Reg(0x3029);	
-		HAL_Delay(5);
+		delay_ms(5);
 		i++;
 		if(i>1000)return 1;
 	}while(state!=0x70); 
@@ -771,7 +776,7 @@ u8 OV5640_Focus_Single(void)
 		retry++;
 		temp=OV5640_RD_Reg(0x3029);	//检查对焦完成状态
 		if(temp==0x10)break;		// focus completed
-		HAL_Delay(5);
+		delay_ms(5);
 		if(retry>1000)return 1;
 	}
 	return 0;	 		
@@ -801,7 +806,7 @@ u8 OV5640_Focus_Constant(void)
 		temp=OV5640_RD_Reg(0x3023); 
 		retry++;
 		if(retry>1000)return 2;
-		HAL_Delay(5);
+		delay_ms(5);
 	} while(temp!=0x00);   
 	
 	
@@ -813,7 +818,7 @@ u8 OV5640_Focus_Constant(void)
 		temp=OV5640_RD_Reg(0x3023); 
 		retry++;
 		if(retry>1000)return 2;
-		HAL_Delay(5);
+		delay_ms(5);
 	}while(temp!=0x00);//0,对焦完成;1:正在对焦
 	return 0;
 }

@@ -1,6 +1,8 @@
 
 #include "OV_Frame.h"
-#include "LCD.h"
+#include "key.h"
+
+#include "lcd.h"
 #include "Dis_Picture.h" 
 #include "Text.h"	
 #include "GBK_LibDrive.h"	
@@ -9,8 +11,7 @@
 
 #include "ov5640.h"
 #include "dcmi.h"
-#include "key.h"
-#include "led.h"
+
 #include "dma.h"
 
 #include "usart.h"
@@ -38,7 +39,7 @@ uint8_t Key_Flag; //键值
 
 /************************************************************************************************/
 
-//OV5640 摄像头 驱动显示例程  使用2.0寸240x320高清显示屏
+//OV5640 摄像头 驱动显示例程  使用2.8寸240x320高清显示屏
 
 
 //STM32H7工程模板-HAL库函数版本
@@ -257,7 +258,7 @@ void JPEG_mode(void)
 	  u8  headok=0;
 	  u8  effect=0;
 	  u8  contrast=2;
-    u8 size=1;			               //默认是QVGA 320*240尺寸
+    u8 size=1;			               //默认是QVGA 320*240尺寸  2.8寸液晶屏
 
     USART1_BaudRate_Init(921600);	 //串口1 初始化--波特率 (460800); (921600); (1382400);
 
@@ -279,11 +280,11 @@ void JPEG_mode(void)
 	
     OV5640_Focus_Init();
 
-    HAL_Delay(50);//延时显示
+    delay_ms(50);//延时显示
 
     OV5640_JPEG_Mode();		//JPEG模式
 
-    HAL_Delay(50);//延时显示
+    delay_ms(50);//延时显示
 
     OV5640_Light_Mode(0);	//自动模式
     OV5640_Color_Saturation(3); //色彩饱和度0
@@ -292,15 +293,15 @@ void JPEG_mode(void)
     OV5640_Sharpness(33);     	//自动锐度
     OV5640_Focus_Constant();    //启动持续对焦
    
-	  HAL_Delay(50);//延时显示
+	  delay_ms(50);//延时显示
 		
     OV5640_OutSize_Set(4,0,jpeg_img_size_tbl[size][0],jpeg_img_size_tbl[size][1]);//设置输出尺寸
 		
-		HAL_Delay(50);        //延时
+		delay_ms(50);        //延时
 		
 		Start_OV5640_JPEG(&hdcmi);
 		
-		HAL_Delay(1000);        //延时  第一帧数据收到的会比较慢
+		delay_ms(1000);        //延时  第一帧数据收到的会比较慢
 		
 
 		
@@ -389,7 +390,7 @@ void JPEG_mode(void)
 								
                 Draw_Font16B(30,180,BLUE,Print_buf);//显示提示内容
 								
-                HAL_Delay(800);
+                delay_ms(800);
 								
             } 
 						
@@ -442,32 +443,32 @@ static void  Copy_RAM_Data(u16 *P1, u16 *P2, u16 Num)
 
 
 
-//void RGBLine_Shift(DCMI_HandleTypeDef *hdcmi)
-//{
-//		
-//	    	if(curline<lcddev.height)
-//				{
-//					
-//										
-//////					HAL_DCMI_Suspend(hdcmi); // 
-//////					HAL_DCMI_Stop(hdcmi);
-//					
-//					__HAL_DCMI_ENABLE_IT(hdcmi, DCMI_IER_FRAME_IE);                                          //使用帧中断
-//				
-//					SCB_InvalidateDCache_by_Addr((uint32_t*)RGB_Line_DATA, RGB_Width/2);  //根据地址信息，无效其对应的 cache-line
-//					
-//					HAL_DCMI_Start_DMA(hdcmi, DCMI_MODE_SNAPSHOT,(uint32_t)&RGB_Line_DATA, RGB_Width/2); 	    //启动 JPEG传输拍照
-//					
-//					HAL_DMA_Abort(&hdma_memtomem_dma1_stream0);   //需要先停止DMA工作，再设置DMA 数据源地址和目标地址
-//					
-//					HAL_DMA_Start(&hdma_memtomem_dma1_stream0, (uint32_t)&RGB_Line_DATA, (uint32_t)&RGB_DATA[curline][0], RGB_Width*2); //使用DMA转存一行数据
-//					
-//  				++curline;
-//				
-//				}
+void RGBLine_Shift(DCMI_HandleTypeDef *hdcmi)
+{
+		
+	    	if(curline<lcddev.height)
+				{
+					
+										
+////					HAL_DCMI_Suspend(hdcmi); // 
+////					HAL_DCMI_Stop(hdcmi);
+					
+					__HAL_DCMI_ENABLE_IT(hdcmi, DCMI_IER_FRAME_IE);                                          //使用帧中断
+				
+					SCB_InvalidateDCache_by_Addr((uint32_t*)RGB_Line_DATA, RGB_Width/2);  //根据地址信息，无效其对应的 cache-line
+					
+					HAL_DCMI_Start_DMA(hdcmi, DCMI_MODE_SNAPSHOT,(uint32_t)&RGB_Line_DATA, RGB_Width/2); 	    //启动 JPEG传输拍照
+					
+					HAL_DMA_Abort(&hdma_memtomem_dma1_stream0);   //需要先停止DMA工作，再设置DMA 数据源地址和目标地址
+					
+					HAL_DMA_Start(&hdma_memtomem_dma1_stream0, (uint32_t)&RGB_Line_DATA, (uint32_t)&RGB_DATA[curline][0], RGB_Width*2); //使用DMA转存一行数据
+					
+  				++curline;
+				
+				}
 
-//		
-//}
+		
+}
 
 
 
@@ -627,14 +628,14 @@ void RGB565_mode(void)
 					if(Key_N==1)
 						{
 							Draw_Font16B(30,50,BLUE,"OV5640: DCMI_Stop");//显示提示内容
-					    HAL_Delay(800);
+					    delay_ms(800);
 							
 ////							DCMI_Stop(); //非KEY1按下,停止显示
 						}
 					else if(Key_N==2) 
 						{	
 							Draw_Font16B(30,50,BLUE,"OV5640: DCMI_Start");//显示提示内容
-					    HAL_Delay(800);
+					    delay_ms(800);
 							
 ////							DCMI_Start();	//重新开始传输
 						}					
@@ -643,7 +644,7 @@ void RGB565_mode(void)
 				{
 					Draw_Font16B(30,50,BLUE,"OV5640: Focus");//显示提示内容
 					
-          HAL_Delay(800);
+          delay_ms(800);
 					
 					OV5640_Focus_Single(); //执行一次自动对焦
 				}
@@ -715,6 +716,24 @@ void RGB565_mode(void)
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 uint8_t T_Num;              //循环变量			
 
 
@@ -746,7 +765,7 @@ void OV_Camera_Demo(uint8_t Key_Value)
 					  
         }
      
-		 HAL_Delay(5);
+		 delay_ms(5);
 				
 				
 		if(OV_mode==1) RGB565_mode();       //选择RGB液晶屏显示模式	  

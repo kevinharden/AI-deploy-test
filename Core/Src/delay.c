@@ -110,7 +110,7 @@ void delay_ms(uint32_t nms)
 ////	u32 i;
 ////	for(i=0;i<nms;i++) delay_us(1000);
 	
-	delay_ms(nms);
+	HAL_Delay(nms);
 	
 }
 

@@ -15,7 +15,7 @@
 ////////////////////////////////////////////////////////////////////////////////// 
 
 void HAL_IncTick(void);
-void delay_ms(uint32_t Delay);
+void HAL_Delay(uint32_t Delay);
 
 //void delay_init(u16 SYSCLK);
 void delay_ms(uint32_t nms);

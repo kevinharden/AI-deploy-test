@@ -46,3 +46,4 @@ ai-deployment-test\key.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_
 ai-deployment-test\key.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
 ai-deployment-test\key.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
 ai-deployment-test\key.o: ../Core/Inc/led.h
+ai-deployment-test\key.o: ../Core/Inc/delay.h

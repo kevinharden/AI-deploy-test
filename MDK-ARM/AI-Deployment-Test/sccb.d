@@ -47,3 +47,4 @@ ai-deployment-test\sccb.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi
 ai-deployment-test\sccb.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
 ai-deployment-test\sccb.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
 ai-deployment-test\sccb.o: ../Core/Inc/sccb.h
+ai-deployment-test\sccb.o: ../Core/Inc/delay.h
