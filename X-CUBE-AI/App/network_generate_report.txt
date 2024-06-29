@@ -1,29 +1,29 @@
 Neural Network Tools for STM32 family v1.7.0 (stm.ai v8.1.0-19520)
-Created date          : 2024-06-26 21:21:56
-Parameters            : generate --name network -m D:/GIT Repo/stm32ai-modelzoo-for-me/image_classification/scripts/training/outputs/2024_03_10_22_11_16/quantized_models/quantized_model.tflite --type tflite --compression none --verbosity 1 --workspace C:\Users\kevin\AppData\Local\Temp\mxAI_workspace63536187565009030005071467316333 --output C:\Users\kevin\.stm32cubemx\network_output --allocate-inputs --series stm32h7 --allocate-outputs --binary --address 0X90000000
+Created date          : 2024-06-28 18:18:06
+Parameters            : generate --name network -m D:/GIT Repo/stm32ai-modelzoo-for-me/image_classification/scripts/training/outputs/2024_06_27_16_34_51/quantized_models/quantized_model.tflite --type tflite --compression none --verbosity 1 --workspace C:\Users\kevin\AppData\Local\Temp\mxAI_workspace311032287808009581423971124923303 --output C:\Users\kevin\.stm32cubemx\network_output --allocate-inputs --series stm32h7 --allocate-outputs --binary --address 0x90000000
 
 Exec/report summary (generate)
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-model file         :   D:\GIT Repo\stm32ai-modelzoo-for-me\image_classification\scripts\training\outputs\2024_03_10_22_11_16\quantized_models\quantized_model.tflite   
+model file         :   D:\GIT Repo\stm32ai-modelzoo-for-me\image_classification\scripts\training\outputs\2024_06_27_16_34_51\quantized_models\quantized_model.tflite   
 type               :   tflite                                                                                                                                          
 c_name             :   network                                                                                                                                         
 compression        :   none                                                                                                                                            
 options            :   allocate-inputs, allocate-outputs                                                                                                               
 optimization       :   balanced                                                                                                                                        
 target/series      :   stm32h7                                                                                                                                         
-workspace dir      :   C:\Users\kevin\AppData\Local\Temp\mxAI_workspace63536187565009030005071467316333                                                                
+workspace dir      :   C:\Users\kevin\AppData\Local\Temp\mxAI_workspace311032287808009581423971124923303                                                               
 output dir         :   C:\Users\kevin\.stm32cubemx\network_output                                                                                                      
 model_fmt          :   ss/sa per channel                                                                                                                               
 model_name         :   quantized_model                                                                                                                                 
-model_hash         :   f5a56ae82b676755bba47c329564fdd6                                                                                                                
-params #           :   395,488 items (406.84 KiB)                                                                                                                      
+model_hash         :   6bf22785a15d9fdc54030d6cb4e23ba0                                                                                                                
+params #           :   399,328 items (410.59 KiB)                                                                                                                      
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 input 1/1          :   'serving_default_input_10' (domain:activations/**default**)                                                                                     
                    :   49152 items, 48.00 KiB, ai_u8, s=0.00392154, zp=0, (1,128,128,3)                                                                                
 output 1/1         :   'conversion_70' (domain:activations/**default**)                                                                                                
-                   :   5 items, 20 B, ai_float, float, (1,5)                                                                                                           
-macc               :   19,099,866                                                                                                                                      
-weights (ro)       :   416,628 B (406.86 KiB) (1 segment) / -1,165,324(-73.7%) vs float model                                                                          
+                   :   8 items, 32 B, ai_float, float, (1,8)                                                                                                           
+macc               :   19,103,760                                                                                                                                      
+weights (ro)       :   420,480 B (410.62 KiB) (1 segment) / -1,176,832(-73.7%) vs float model                                                                          
 activations (rw)   :   229,888 B (224.50 KiB) (1 segment) *                                                                                                            
 ram (total)        :   229,888 B (224.50 KiB) = 229,888 + 0 + 0                                                                                                        
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -216,15 +216,15 @@ m_id   layer (type,original)                                  oshape            
 67     pool_67 (Pool, MEAN)                                   [b:1,h:1,h:1,w:1,c:1280]                             20,480                               nl_66_nl   |                                       pool_oi8[80]                  
        reshape_67_reshape (Reshape, MEAN)                     [b:1,c:1280]                                                                               pool_67   |                                       
 ------ ------------------------------------------------------ ----------------------------- ----------------- ----------- -------------------------------------- --- ----------------- ------------------- ----------------------------- 
-68     mobilenet_v2_alpha_0_35_dense_MatMul (Placeholder, )   [h:5,h:5,c:1280]              6,400/6,400                                                            | +20(+0.3%)        +6,405(+100.0%)     dense_oi8[81]                 
-       gemm_68 (Gemm, FULLY_CONNECTED)                        [b:1,c:5]                                             6,405                     reshape_67_reshape   |                   -6,405(-100.0%)     
+68     mobilenet_v2_alpha_0_35_dense_MatMul (Placeholder, )   [h:8,h:8,c:1280]              10,240/10,240                                                          | +32(+0.3%)        +10,248(+100.0%)    dense_oi8[81]                 
+       gemm_68 (Gemm, FULLY_CONNECTED)                        [b:1,c:8]                                            10,248                     reshape_67_reshape   |                   -10,248(-100.0%)    
                                                                                                                             mobilenet_v2_alpha_0_35_dense_MatMul   | 
 ------ ------------------------------------------------------ ----------------------------- ----------------- ----------- -------------------------------------- --- ----------------- ------------------- ----------------------------- 
-69     nl_69 (Nonlinearity, SOFTMAX)                          [b:1,c:5]                                                75                                gemm_68   |                                       nl_oi8[82]                    
+69     nl_69 (Nonlinearity, SOFTMAX)                          [b:1,c:8]                                               120                                gemm_68   |                                       nl_oi8[82]                    
 ------ ------------------------------------------------------ ----------------------------- ----------------- ----------- -------------------------------------- --- ----------------- ------------------- ----------------------------- 
-70     conversion_70 (Conversion, DEQUANTIZE)                 [b:1,c:5]                                                10                                  nl_69   |                                       converter_of32[o][83]         
+70     conversion_70 (Conversion, DEQUANTIZE)                 [b:1,c:8]                                                16                                  nl_69   |                                       converter_of32[o][83]         
 ------ ------------------------------------------------------ ----------------------------- ----------------- ----------- -------------------------------------- --- ----------------- ------------------- ----------------------------- 
-model/c-model: macc=19,956,442/19,099,866 -856,576(-4.3%) weights=416,608/416,628 +20(+0.0%) activations=--/229,888 io=--/0
+model/c-model: macc=19,960,336/19,103,760 -856,576(-4.3%) weights=420,448/420,480 +32(+0.0%) activations=--/229,888 io=--/0
 
 
 
@@ -235,8 +235,8 @@ c-name                : network
 c-node #              : 84
 c-array #             : 268
 activations size      : 229888 (1 segment)
-weights size          : 416628 (1 segment)
-macc                  : 19099866
+weights size          : 420480 (1 segment)
+macc                  : 19103760
 inputs                : ['serving_default_input_10_output']
 outputs               : ['conversion_70_output']
 
@@ -294,10 +294,10 @@ c_id   name (*_array)                    item/size       domain/mem-pool        
 47     conv2d_28_scratch1                9216/9216       activations/**default**   int8_t          sa8                       
 48     conv2d_66_output                  20480/20480     activations/**default**   int8_t          sa8                       
 49     pool_67_output                    1280/1280       activations/**default**   int8_t          sa8                       
-50     gemm_68_output                    5/5             activations/**default**   int8_t          sa8                       
+50     gemm_68_output                    8/8             activations/**default**   int8_t          sa8                       
 51     conv2d_29_scratch0                5329/5329       activations/**default**   int8_t          s8                        
-52     nl_69_output                      5/5             activations/**default**   int8_t          sa8                       
-53     conversion_70_output              5/20            activations/**default**   float           float32         /output   
+52     nl_69_output                      8/8             activations/**default**   int8_t          sa8                       
+53     conversion_70_output              8/32            activations/**default**   float           float32         /output   
 54     conv2d_29_scratch1                9216/9216       activations/**default**   int8_t          sa8                       
 55     conv2d_1_weights                  432/432         weights/weights           const int8_t    ss8/ch(16)                
 56     conv2d_1_bias                     16/64           weights/weights           const int32_t   ss32/ch(16)               
@@ -412,7 +412,7 @@ c_id   name (*_array)                    item/size       domain/mem-pool        
 165    gemm_68_scratch0                  1280/2560       activations/**default**   int16_t         s16                       
 166    conv2d_47_weights                 6144/6144       weights/weights           const int8_t    ss8/ch(192)               
 167    conv2d_47_bias                    192/768         weights/weights           const int32_t   ss32/ch(192)              
-168    nl_69_scratch0                    5/20            activations/**default**   int32_t         s32                       
+168    nl_69_scratch0                    8/32            activations/**default**   int32_t         s32                       
 169    conv2d_48_weights                 1728/1728       weights/weights           const int8_t    ss8/ch(192)               
 170    conv2d_48_bias                    192/768         weights/weights           const int32_t   ss32/ch(192)              
 171    conv2d_49_weights                 6144/6144       weights/weights           const int8_t    ss8/ch(32)                
@@ -443,8 +443,8 @@ c_id   name (*_array)                    item/size       domain/mem-pool        
 196    conv2d_65_bias                    112/448         weights/weights           const int32_t   ss32/ch(112)              
 197    conv2d_66_weights                 143360/143360   weights/weights           const int8_t    ss8/ch(1280)              
 198    conv2d_66_bias                    1280/5120       weights/weights           const int32_t   ss32/ch(1280)             
-199    gemm_68_weights                   6400/6400       weights/weights           const int8_t    ss8                       
-200    gemm_68_bias                      5/20            weights/weights           const int32_t   ss32                      
+199    gemm_68_weights                   10240/10240     weights/weights           const int8_t    ss8                       
+200    gemm_68_bias                      8/32            weights/weights           const int32_t   ss32                      
 201    conv2d_1_scratch0                 1196/1196       activations/**default**   int8_t          s8                        
 202    conv2d_2_scratch0                 593/593         activations/**default**   int8_t          s8                        
 203    conv2d_2_scratch1                 65536/65536     activations/**default**   int8_t          sa8                       
@@ -950,18 +950,18 @@ c_id   name (*_layer)         id   layer_type             macc      rom      ten
 80     pool_67                67   pool                   20480     0        I: conv2d_66_output                  (1,4,4,1280) (48)      
                                                                              O: pool_67_output                    (1,1,1,1280) (49)      
 ------ ---------------------- ---- ---------------------- --------- -------- ------------------------------------ ---------------------- 
-81     gemm_68                68   dense                  6405      6420     I: pool_67_output                    (1,1,1,1280) (49)      
+81     gemm_68                68   dense                  10248     10272    I: pool_67_output                    (1,1,1,1280) (49)      
                                                                              S: gemm_68_scratch0                                         
-                                                                             W: gemm_68_weights                   (1280,5) (199)         
-                                                                             W: gemm_68_bias                      (5,) (200)             
-                                                                             O: gemm_68_output                    (1,5) (50)             
+                                                                             W: gemm_68_weights                   (1280,8) (199)         
+                                                                             W: gemm_68_bias                      (8,) (200)             
+                                                                             O: gemm_68_output                    (1,8) (50)             
 ------ ---------------------- ---- ---------------------- --------- -------- ------------------------------------ ---------------------- 
-82     nl_69                  69   nl                     75        0        I: gemm_68_output                    (1,5) (50)             
+82     nl_69                  69   nl                     120       0        I: gemm_68_output                    (1,8) (50)             
                                                                              S: nl_69_scratch0                                           
-                                                                             O: nl_69_output                      (1,5) (52)             
+                                                                             O: nl_69_output                      (1,8) (52)             
 ------ ---------------------- ---- ---------------------- --------- -------- ------------------------------------ ---------------------- 
-83     conversion_70          70   converter              10        0        I: nl_69_output                      (1,5) (52)             
-                                                                             O: conversion_70_output              (1,5) (53)             
+83     conversion_70          70   converter              16        0        I: nl_69_output                      (1,8) (52)             
+                                                                             O: conversion_70_output              (1,8) (53)             
 ------ ---------------------- ---- ---------------------- --------- -------- ------------------------------------ ---------------------- 
 
 
@@ -1051,20 +1051,20 @@ c_id    m_id   name (type)                                 #op          type    
 78      65     conv2d_65 (conv2d)                      602,224    smul_s8_s8    37,744     0.0113 
 79      66     conv2d_66 (conv2d)                    2,295,040    smul_s8_s8   144,640     0.0096 
 80      67     pool_67 (pool)                           20,480      op_s8_s8           
-81      68     gemm_68 (dense)                           6,405    smul_s8_s8     6,405     0.0039 
-82      69     nl_69 (nl)                                   75      op_s8_s8           
-83      70     conversion_70 (converter)                    10   conv_s8_f32           
+81      68     gemm_68 (dense)                          10,248    smul_s8_s8    10,248     0.0042 
+82      69     nl_69 (nl)                                  120      op_s8_s8           
+83      70     conversion_70 (converter)                    16   conv_s8_f32           
 ------- ------ ---------------------------------- ------------ ------------- --------- ---------- 
-total                                               19,099,866                 395,493     0.0110 
+total                                               19,103,760                 399,336     0.0110 
 
 Number of operation types
 ---------------- ------------ ----------- 
 operation type              #           % 
 ---------------- ------------ ----------- 
 conv_u8_s8             98,304        0.5% 
-smul_s8_s8         18,954,117       99.2% 
-op_s8_s8               47,435        0.2% 
-conv_s8_f32                10        0.0% 
+smul_s8_s8         18,957,960       99.2% 
+op_s8_s8               47,480        0.2% 
+conv_s8_f32                16        0.0% 
 
 Complexity report (model)
 ------ -------------------------------------- ------------------------- ------------------------- ---------- 
@@ -1100,49 +1100,49 @@ m_id   name                                   c_macc                    c_rom   
 27     conv2d_27                              |                  0.8%   |                  0.6%   [31]       
 28     conv2d_28                              ||                 1.2%   |                  1.0%   [32]       
 29     conv2d_29                              |                  0.4%   |                  0.4%   [33, 34]   
-30     conv2d_30                              ||                 1.2%   |                  0.9%   [35]       
+30     conv2d_30                              ||                 1.2%   |                  0.8%   [35]       
 31     eltwise_31                             |                  0.0%   |                  0.0%   [36]       
 32     conv2d_32                              ||                 1.2%   |                  1.0%   [37]       
 33     conv2d_33                              |                  0.4%   |                  0.4%   [38, 39]   
-34     conv2d_34                              ||                 1.2%   |                  0.9%   [40]       
+34     conv2d_34                              ||                 1.2%   |                  0.8%   [40]       
 35     eltwise_35                             |                  0.0%   |                  0.0%   [41]       
 36     conv2d_36                              ||                 1.2%   |                  1.0%   [42]       
 37     conv2d_37                              |                  0.4%   |                  0.4%   [43, 44]   
-38     conv2d_38                              ||                 1.2%   |                  0.9%   [45]       
+38     conv2d_38                              ||                 1.2%   |                  0.8%   [45]       
 39     eltwise_39                             |                  0.0%   |                  0.0%   [46]       
 40     conv2d_40                              ||                 1.2%   |                  1.0%   [47]       
 41     conv2d_41                              |                  0.4%   |                  0.4%   [48, 49]   
 42     conv2d_42                              ||                 1.5%   |                  1.1%   [50]       
-43     conv2d_43                              |||                2.1%   |                  1.7%   [51]       
+43     conv2d_43                              |||                2.1%   |                  1.6%   [51]       
 44     conv2d_44                              |                  0.6%   |                  0.6%   [52, 53]   
 45     conv2d_45                              |||                2.1%   |                  1.5%   [54]       
 46     eltwise_46                             |                  0.0%   |                  0.0%   [55]       
-47     conv2d_47                              |||                2.1%   |                  1.7%   [56]       
+47     conv2d_47                              |||                2.1%   |                  1.6%   [56]       
 48     conv2d_48                              |                  0.6%   |                  0.6%   [57, 58]   
 49     conv2d_49                              |||                2.1%   |                  1.5%   [59]       
 50     eltwise_50                             |                  0.0%   |                  0.0%   [60]       
-51     conv2d_51                              |||                2.1%   |                  1.7%   [61]       
+51     conv2d_51                              |||                2.1%   |                  1.6%   [61]       
 52     pad_52                                 |                  0.1%   |                  0.6%   [63]       
 53     conv2d_53                              |                  0.0%   |                  0.0%   [62]       
 54     conv2d_54                              ||                 0.9%   ||                 2.6%   [64]       
 55     conv2d_55                              ||                 1.6%   |||                4.8%   [65]       
 56     conv2d_56                              |                  0.3%   |                  1.0%   [66, 67]   
-57     conv2d_57                              ||                 1.6%   ||                 4.6%   [68]       
+57     conv2d_57                              ||                 1.6%   ||                 4.5%   [68]       
 58     eltwise_58                             |                  0.0%   |                  0.0%   [69]       
 59     conv2d_59                              ||                 1.6%   |||                4.8%   [70]       
 60     conv2d_60                              |                  0.3%   |                  1.0%   [71, 72]   
-61     conv2d_61                              ||                 1.6%   ||                 4.6%   [73]       
+61     conv2d_61                              ||                 1.6%   ||                 4.5%   [73]       
 62     eltwise_62                             |                  0.0%   |                  0.0%   [74]       
 63     conv2d_63                              ||                 1.6%   |||                4.8%   [75]       
 64     conv2d_64                              |                  0.3%   |                  1.0%   [76, 77]   
 65     conv2d_65                              ||||               3.2%   ||||               9.1%   [78]       
-66     conv2d_66                              ||||||||||||||||  12.0%   ||||||||||||||||  35.6%   [79]       
+66     conv2d_66                              ||||||||||||||||  12.0%   ||||||||||||||||  35.3%   [79]       
 67     pool_67                                |                  0.1%   |                  0.0%   [80]       
-68     mobilenet_v2_alpha_0_35_dense_MatMul   |                  0.0%   |                  1.5%   [81]       
+68     mobilenet_v2_alpha_0_35_dense_MatMul   |                  0.1%   ||                 2.4%   [81]       
 69     nl_69                                  |                  0.0%   |                  0.0%   [82]       
 70     conversion_70                          |                  0.0%   |                  0.0%   [83]       
 ------ -------------------------------------- ------------------------- ------------------------- ---------- 
-macc=19,099,866 weights=416,628 act=229,888 ram_io=0
+macc=19,103,760 weights=420,480 act=229,888 ram_io=0
 
 Generated files (8)
 ------------------------------------------------------------------ 
