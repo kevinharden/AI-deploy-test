@@ -128,6 +128,10 @@ int main(void)
   MX_USART1_UART_Init();
   MX_CRC_Init();
   MX_SPI2_Init();
+  MX_UART4_Init();
+  MX_UART7_Init();
+  MX_USART2_UART_Init();
+  MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
 W25QXX_Init(); 
 LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示

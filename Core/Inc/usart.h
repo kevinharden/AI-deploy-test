@@ -32,7 +32,15 @@ extern "C" {
 
 /* USER CODE END Includes */
 
+extern UART_HandleTypeDef huart4;
+
+extern UART_HandleTypeDef huart7;
+
 extern UART_HandleTypeDef huart1;
+
+extern UART_HandleTypeDef huart2;
+
+extern UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN Private defines */
 
@@ -41,7 +49,11 @@ extern DMA_HandleTypeDef hdma_usart1_tx;
 #define USART_REC_LEN  		128     	//定义最大接收字节数 128
 /* USER CODE END Private defines */
 
+void MX_UART4_Init(void);
+void MX_UART7_Init(void);
 void MX_USART1_UART_Init(void);
+void MX_USART2_UART_Init(void);
+void MX_USART3_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 void USART1_BaudRate_Init(uint32_t COM1_BaudRate);
