@@ -22,6 +22,9 @@
 #include "stm32h7xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "usart.h"
+#include "led.h"
+#include "OV_Frame.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,7 +34,11 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+extern uint8_t aRxBuffer[RXBUFFERSIZE];//HAL库使用的串口接收缓冲
 
+extern uint8_t ov_frame;  						//帧率
+
+extern void (*dcmi_rx_callback)(void);//DCMI DMA接收回调函数
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -222,6 +229,13 @@ void DMA1_Stream0_IRQHandler(void)
 void DMA1_Stream1_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA1_Stream1_IRQn 0 */
+	int ErrorCode=0;
+	int State=0;
+
+	State=HAL_DMA_GetState(&hdma_dcmi);
+	ErrorCode=HAL_DMA_GetError(&hdma_dcmi);
+	RGBLine_Shift(&hdcmi);
+//while(HAL_DMA_GetState(&hdma_dcmi) == HAL_DMA_STATE_BUSY);
 
   /* USER CODE END DMA1_Stream1_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_dcmi);

@@ -619,7 +619,8 @@ void RGB565_mode(void)
     {
 			
         Key_Flag=KEY_Scan(0);   //获取键值
-       
+			
+			
 			  if(Key_Flag==KEY1_PRES)//按键1切换功能
 				{
 						Key_N++;

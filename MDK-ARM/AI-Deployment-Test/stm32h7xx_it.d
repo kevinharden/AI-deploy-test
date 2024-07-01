@@ -45,3 +45,9 @@ ai-deployment-test\stm32h7xx_it.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx
 ai-deployment-test\stm32h7xx_it.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
 ai-deployment-test\stm32h7xx_it.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
 ai-deployment-test\stm32h7xx_it.o: ../Core/Inc/stm32h7xx_it.h
+ai-deployment-test\stm32h7xx_it.o: ../Core/Inc/usart.h
+ai-deployment-test\stm32h7xx_it.o: ../Core/Inc/led.h
+ai-deployment-test\stm32h7xx_it.o: ../Core/Inc/OV_Frame.h
+ai-deployment-test\stm32h7xx_it.o: ../Core/Inc/sccb.h
+ai-deployment-test\stm32h7xx_it.o: ../Core/Inc/ov5640.h
+ai-deployment-test\stm32h7xx_it.o: ../Core/Inc/sccb.h
