@@ -69,3 +69,5 @@ ai-deployment-test\main.o: ../X-CUBE-AI/App/network_config.h
 ai-deployment-test\main.o: ../Middlewares/ST/AI/Inc/ai_platform.h
 ai-deployment-test\main.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\inttypes.h
 ai-deployment-test\main.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stdbool.h
+ai-deployment-test\main.o: ../X-CUBE-AI/App/network_data_params.h
+ai-deployment-test\main.o: ../X-CUBE-AI/App/network_data.h

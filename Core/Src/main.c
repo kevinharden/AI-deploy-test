@@ -37,6 +37,8 @@
 #include "GBK_LibDrive.h"
 #include "OV_Frame.h"
 #include "network.h"
+#include "network_data_params.h"
+#include "network_data.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -78,12 +80,41 @@ uint8_t  key_F;//¼üÖµ
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+static ai_handle network = AI_HANDLE_NULL;
+
+AI_ALIGNED(32)
+static ai_u8 activations[AI_NETWORK_DATA_ACTIVATIONS_SIZE];
+
+AI_ALIGNED(32)
+static ai_float in_data[AI_NETWORK_IN_1_SIZE];
+
+AI_ALIGNED(32)
+static ai_float out_data[AI_NETWORK_OUT_1_SIZE];
+
+static ai_buffer *ai_input;
+static ai_buffer *ai_output;
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 uint8_t Textbuf[32];
+int ai_Init(void)
+{
+	ai_error err;
+	
+	const ai_handle acts[] = { activations };
+  err = ai_network_create_and_init(&network, acts, NULL);
+	if(err.type != AI_ERROR_NONE)
+	{
+	
+	}
+	
+	ai_input = ai_network_inputs_get(network, NULL);
+	ai_output = ai_network_outputs_get(network, NULL);
+	
+	return 0;
+}
 /* USER CODE END 0 */
 
 /**
