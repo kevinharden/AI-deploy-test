@@ -29,6 +29,34 @@ Project File Date:  07/03/2024
 Build target 'AI-Deployment-Test'
 Note: source file '../Core/Src/system_stm32h7xx.c' - object file renamed from 'AI-Deployment-Test\system_stm32h7xx.o' to 'AI-Deployment-Test\system_stm32h7xx_1.o'.
 Note: source file '..\Drivers\LCD240\lcd.c' - object file renamed from 'AI-Deployment-Test\lcd.o' to 'AI-Deployment-Test\lcd_1.o'.
+compiling key.c...
+..\Core\Src\key.c(119): warning:  #223-D: function "printf" declared implicitly
+  				  printf("\r\n KEY1 按键按下一次 \r\n");
+..\Core\Src\key.c: 1 warning, 0 errors
+compiling sccb.c...
+compiling GBK_LibDrive.c...
+compiling ov5640.c...
+compiling delay.c...
+compiling stm32h7xx_it.c...
+../Core/Src/stm32h7xx_it.c(237): warning:  #223-D: function "RGBLine_Shift" declared implicitly
+  	RGBLine_Shift(&hdcmi);
+../Core/Src/stm32h7xx_it.c(232): warning:  #550-D: variable "ErrorCode"  was set but never used
+  	int ErrorCode=0;
+../Core/Src/stm32h7xx_it.c(233): warning:  #550-D: variable "State"  was set but never used
+  	int State=0;
+../Core/Src/stm32h7xx_it.c: 3 warnings, 0 errors
+compiling network_data.c...
+compiling network_data_params.c...
+compiling sdmmc_sdcard.c...
+..\Core\Src\sdmmc_sdcard.c(69): warning:  #177-D: variable "clkdiv"  was declared but never referenced
+  	u8 clkdiv=0;
+..\Core\Src\sdmmc_sdcard.c(656): warning:  #223-D: function "printf" declared implicitly
+          printf("SDMMC_Send_Cmd=%d\r\n",errorstatus);
+..\Core\Src\sdmmc_sdcard.c(667): warning:  #223-D: function "printf" declared implicitly
+  			printf("SD_CMD_READ_MULT_BLOCK Error\r\n");
+..\Core\Src\sdmmc_sdcard.c: 3 warnings, 0 errors
+compiling network.c...
+compiling usart.c...
 compiling OV_Frame.c...
 ..\Core\Src\OV_Frame.c(275): warning:  #223-D: function "sprintf" declared implicitly
       sprintf((char*)Print_buf,"JPEG Size:%s",JPEG_SIZE_TBL[size]);
@@ -67,16 +95,6 @@ compiling OV_Frame.c...
 ..\Core\Src\OV_Frame.c(419): warning:  #177-D: function "Copy_RAM_Data"  was declared but never referenced
   static void  Copy_RAM_Data(u16 *P1, u16 *P2, u16 Num)
 ..\Core\Src\OV_Frame.c: 18 warnings, 0 errors
-compiling ov5640.c...
-compiling sccb.c...
-compiling delay.c...
-compiling led.c...
-compiling key.c...
-..\Core\Src\key.c(119): warning:  #223-D: function "printf" declared implicitly
-  				  printf("\r\n KEY1 按键按下一次 \r\n");
-..\Core\Src\key.c: 1 warning, 0 errors
-compiling gpio.c...
-compiling GBK_LibDrive.c...
 compiling w25qxx.c...
 ..\Core\Src\w25qxx.c(83): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
   			QSPI_Send_CMD(W25X_SetReadParam,0,0,QSPI_INSTRUCTION_4_LINES,QSPI_ADDRESS_NONE,QSPI_ADDRESS_8_BITS,QSPI_DATA_4_LINES); 		//QPI,设置读参数指令,地址为0,4线传数据_8位地址_无地址_4线传输指令,无空周期,1个字节数据
@@ -126,86 +144,411 @@ compiling w25qxx.c...
   	  QSPI_Send_CMD(W25X_SectorErase,Dst_Addr,0,QSPI_INSTRUCTION_4_LINES,QSPI_ADDRESS_4_LINES,QSPI_ADDRESS_24_BITS,QSPI_DATA_NONE);//QPI,写扇区擦除指令,地址为0,无数据_24位地址_4线传输地址_4线传输指令,无空周期,0个字节数据
 ..\Core\Src\w25qxx.c: 23 warnings, 0 errors
 compiling main.c...
-../Core/Src/main.c(208): warning:  #223-D: function "sprintf" declared implicitly
+../Core/Src/main.c(126): warning:  #550-D: variable "err"  was set but never used
+  	ai_error err;
+../Core/Src/main.c(232): warning:  #223-D: function "sprintf" declared implicitly
   		sprintf((char*)Textbuf,"SD Card Size: %u MB",SDCardInfo.CardCapacity>>20); //显示无符号十进制整数		
-../Core/Src/main.c(246): warning:  #223-D: function "KEY_Scan" declared implicitly
+../Core/Src/main.c(270): warning:  #223-D: function "KEY_Scan" declared implicitly
   		key_F=KEY_Scan(0); 		//得到键值   //按键扫描测试函数
 ../Core/Src/main.c(89): warning:  #177-D: variable "in_data"  was declared but never referenced
   static ai_float in_data[AI_NETWORK_IN_1_SIZE];
 ../Core/Src/main.c(92): warning:  #177-D: variable "out_data"  was declared but never referenced
   static ai_float out_data[AI_NETWORK_OUT_1_SIZE];
-../Core/Src/main.c(94): warning:  #550-D: variable "ai_input"  was set but never used
-  static ai_buffer *ai_input;
-../Core/Src/main.c(95): warning:  #550-D: variable "ai_output"  was set but never used
-  static ai_buffer *ai_output;
-../Core/Src/main.c: 6 warnings, 0 errors
-compiling sdmmc_sdcard.c...
-..\Core\Src\sdmmc_sdcard.c(69): warning:  #177-D: variable "clkdiv"  was declared but never referenced
-  	u8 clkdiv=0;
-..\Core\Src\sdmmc_sdcard.c(656): warning:  #223-D: function "printf" declared implicitly
-          printf("SDMMC_Send_Cmd=%d\r\n",errorstatus);
-..\Core\Src\sdmmc_sdcard.c(667): warning:  #223-D: function "printf" declared implicitly
-  			printf("SD_CMD_READ_MULT_BLOCK Error\r\n");
-..\Core\Src\sdmmc_sdcard.c: 3 warnings, 0 errors
-compiling crc.c...
-compiling dcmi.c...
-compiling stm32h7xx_hal_crc_ex.c...
-compiling stm32h7xx_hal_crc.c...
-compiling stm32h7xx_hal_flash.c...
-compiling stm32h7xx_hal_cortex.c...
-compiling stm32h7xx_hal_msp.c...
-compiling stm32h7xx_hal_rcc.c...
-compiling usart.c...
-compiling stm32h7xx_hal_rcc_ex.c...
-compiling dma.c...
-compiling stm32h7xx_it.c...
-../Core/Src/stm32h7xx_it.c(237): warning:  #223-D: function "RGBLine_Shift" declared implicitly
-  	RGBLine_Shift(&hdcmi);
-../Core/Src/stm32h7xx_it.c(232): warning:  #550-D: variable "ErrorCode"  was set but never used
-  	int ErrorCode=0;
-../Core/Src/stm32h7xx_it.c(233): warning:  #550-D: variable "State"  was set but never used
-  	int State=0;
-../Core/Src/stm32h7xx_it.c: 3 warnings, 0 errors
-compiling quadspi.c...
-compiling sdmmc.c...
-compiling spi.c...
-compiling stm32h7xx_hal_gpio.c...
-compiling stm32h7xx_hal_flash_ex.c...
-compiling stm32h7xx_hal_exti.c...
-compiling stm32h7xx_hal_dcmi.c...
-compiling stm32h7xx_hal_hsem.c...
-compiling stm32h7xx_ll_sdmmc.c...
-compiling stm32h7xx_ll_delayblock.c...
-compiling stm32h7xx_hal_qspi.c...
-compiling stm32h7xx_hal_i2c_ex.c...
-compiling stm32h7xx_hal_spi.c...
-compiling stm32h7xx_hal_spi_ex.c...
-compiling stm32h7xx_hal.c...
-compiling stm32h7xx_hal_i2c.c...
-compiling stm32h7xx_hal_sd_ex.c...
-compiling stm32h7xx_hal_sd.c...
-compiling stm32h7xx_hal_pwr.c...
-compiling stm32h7xx_hal_mdma.c...
-compiling FONT.c...
-compiling stm32h7xx_hal_dma.c...
-compiling stm32h7xx_hal_pwr_ex.c...
-compiling stm32h7xx_hal_dma_ex.c...
-compiling network_data.c...
-compiling network.c...
-compiling network_data_params.c...
-compiling stm32h7xx_hal_tim.c...
-compiling stm32h7xx_hal_tim_ex.c...
-compiling Dis_Picture.c...
-compiling system_stm32h7xx.c...
-compiling stm32h7xx_hal_uart_ex.c...
+../Core/Src/main.c: 5 warnings, 0 errors
 compiling Text.c...
-compiling Picture.c...
 compiling lcd.c...
-compiling stm32h7xx_hal_uart.c...
 linking...
-Program Size: Code=44238 RO-data=15154 RW-data=140 ZI-data=498004  
-FromELF: creating hex file...
-"AI-Deployment-Test\AI-Deployment-Test.axf" - 0 Error(s), 54 Warning(s).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching libspace.o(.text).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching __rtentry2.o(.ARM.Collect$$rtentry$$0000000D).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching rt_errno_addr_intlibspace.o(.text).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_dma.o(i.HAL_DMA_GetState).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_ll_sdmmc.o(i.SDMMC_GetResponse).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_ll_sdmmc.o(i.SDMMC_ReadFIFO).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching _printf_s.o(.ARM.Collect$$_printf_percent$$00000014).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching heapauxi.o(.text).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching funder.o(i.__mathlib_flt_infnan2).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching rtexit2.o(.ARM.Collect$$rtexit$$00000004).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching gbk_libdrive.o(i.GBK_Lib_Init).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching delay.o(i.delay_ms).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching main.o(i.Error_Handler).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching main.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_it.o(i.SysTick_Handler).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_dma.o(i.HAL_DMA_GetError).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(i.ai_network_get_error).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching ai_platform_interface.o(i._ai_platform_acquire_crc).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching core_common.o(i.core_init).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching libinit2.o(.ARM.Collect$$libinit$$00000001).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching sccb.o(i.SCCB_Init).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_it.o(i.BusFault_Handler).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_it.o(i.DebugMon_Handler).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_it.o(i.HardFault_Handler).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_it.o(i.MemManage_Handler).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_it.o(i.NMI_Handler).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_it.o(i.PendSV_Handler).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_it.o(i.SVC_Handler).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_it.o(i.UsageFault_Handler).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_dcmi.o(i.HAL_DCMI_ErrorCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_dcmi.o(i.HAL_DCMI_LineEventCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_dcmi.o(i.HAL_DCMI_VsyncEventCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_sd.o(i.HAL_SDEx_Read_DMADoubleBuf0CpltCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_sd.o(i.HAL_SDEx_Read_DMADoubleBuf1CpltCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_sd.o(i.HAL_SDEx_Write_DMADoubleBuf0CpltCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_sd.o(i.HAL_SDEx_Write_DMADoubleBuf1CpltCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_sd.o(i.HAL_SD_ErrorCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_sd.o(i.HAL_SD_RxCpltCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_sd.o(i.HAL_SD_TxCpltCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_uart.o(i.HAL_UARTEx_RxEventCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_uart.o(i.HAL_UART_ErrorCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_uart.o(i.HAL_UART_RxCpltCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching stm32h7xx_hal_uart.o(i.HAL_UART_TxCpltCallback).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching ai_platform_interface.o(i._ai_platform_release_crc).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching layers_dw_sssa8_ch.o(i.func_dummy).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching layers_pw_sssa8_ch.o(i.func_dummy).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching layers_conv2d_rgb_sssa8_ch.o(i.func_dummy).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching use_no_semi.o(.text).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching libshutdown2.o(.ARM.Collect$$libshutdown$$00000010).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching network.o(.constdata).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching usenofp.o(x$fpl$usenofp).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6406E: No space in execution regions with .ANY selector matching indicate_semi.o(.text).
+AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6407E: Sections of aggregate size 0x7e8 bytes could not fit into .ANY selector(s).
+Not enough information to list image symbols.
+Not enough information to list load addresses in the image map.
+Finished: 2 information, 0 warning and 387 error messages.
+"AI-Deployment-Test\AI-Deployment-Test.axf" - 387 Error(s), 53 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -229,7 +572,8 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE@6.1.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:02:38
+Target not created.
+Build Time Elapsed:  00:00:23
 </pre>
 </body>
 </html>

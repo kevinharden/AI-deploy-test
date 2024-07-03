@@ -98,7 +98,10 @@ static ai_buffer *ai_output;
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
 uint8_t Textbuf[32];
+
+/*神经网络初始化*/
 int ai_Init(void)
 {
 	ai_error err;
@@ -115,6 +118,26 @@ int ai_Init(void)
 	
 	return 0;
 }
+
+/*AI 运行处理函数*/
+int aiRun(const void *in_data, void *out_data)
+{
+	ai_i32 n_batch;
+	ai_error err;
+	
+	ai_input[0].data = AI_HANDLE_PTR(in_data);
+	ai_input[0].data = AI_HANDLE_PTR(out_data);
+	
+	n_batch = ai_network_run(network, &ai_input[0], &ai_output[0]);
+	if(n_batch != 1)
+	{
+	err=ai_network_get_error(network);
+	};
+	
+	return 0;
+	
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -168,6 +191,7 @@ W25QXX_Init();
 LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
 	GBK_Lib_Init();        //硬件GBK字库初始化--(如果使用不带字库的液晶屏版本，此处可以屏蔽，不做字库初始化）
 	LCD_Clear(WHITE);      //清屏  	
+	ai_Init();
 	
 	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_1,GPIO_PIN_RESET);
 	
