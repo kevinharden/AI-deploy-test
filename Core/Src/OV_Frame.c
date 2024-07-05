@@ -17,9 +17,9 @@
 #include "usart.h"
 
 
-uint8_t Print_buf[48];	//消息缓存区
+__attribute__((section (".RAM_D2"))) uint8_t Print_buf[48];	//消息缓存区
 
-uint8_t Key_Flag; //键值
+__attribute__((section (".RAM_D2"))) uint8_t Key_Flag; //键值
 
 //////////////////////////////////////////////////////////////////////////////////	 
 
@@ -83,13 +83,13 @@ u16 yoffset=0;							//y方向的偏移量
 
 
 
-__align(4)   uint32_t RGB_Line_DATA[RGB_Width/2]__attribute((at(0X24040000)));            //缓存一行    
+__align(4)   uint32_t RGB_Line_DATA[RGB_Width/2]__attribute((at(0X24010000)));            //缓存一行    
 
 
-__align(2)   uint16_t RGB_DATA[RGB_Height][RGB_Width]__attribute((at(0X24040000)));       //缓存一屏幕数据    //缓存一屏幕数据   
+__align(2)   uint16_t RGB_DATA[RGB_Height][RGB_Width]__attribute((at(0X24010000)));       //缓存一屏幕数据    //缓存一屏幕数据   
 
 
-__align(4)   uint32_t JPEG_DATA[JPEG_buf_size]__attribute((at(0X24040000)));              //JPEG数据缓存buf,定义在LCD帧缓存之后
+__align(4)   uint32_t JPEG_DATA[1]__attribute((at(0X20010000)));              //JPEG数据缓存buf,定义在LCD帧缓存之后JPEG_buf_size
  	
 
 uint16_t  curline=0;							   //摄像头输出数据,当前行编号
@@ -153,8 +153,7 @@ union TData
 uint8_t Get_Picture=0;//捕获照片的状态
 
 uint32_t JPEG_CharSize; //JPEG 的字节 长度
-
-uint32_t JPEG_File_Length; //= JPEG_buf_size;
+ uint32_t JPEG_File_Length; //= JPEG_buf_size;
 
 
 

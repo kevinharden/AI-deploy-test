@@ -29,10 +29,48 @@ Project File Date:  07/04/2024
 Build target 'AI-Deployment-Test'
 Note: source file '../Core/Src/system_stm32h7xx.c' - object file renamed from 'AI-Deployment-Test\system_stm32h7xx.o' to 'AI-Deployment-Test\system_stm32h7xx_1.o'.
 Note: source file '..\Drivers\LCD240\lcd.c' - object file renamed from 'AI-Deployment-Test\lcd.o' to 'AI-Deployment-Test\lcd_1.o'.
+compiling OV_Frame.c...
+..\Core\Src\OV_Frame.c(274): warning:  #223-D: function "sprintf" declared implicitly
+      sprintf((char*)Print_buf,"JPEG Size:%s",JPEG_SIZE_TBL[size]);
+..\Core\Src\OV_Frame.c(282): warning:  #223-D: function "delay_ms" declared implicitly
+      delay_ms(50);//延时显示
+..\Core\Src\OV_Frame.c(254): warning:  #177-D: variable "i"  was declared but never referenced
+      u32 i,jpgstart,jpglen;
+..\Core\Src\OV_Frame.c(254): warning:  #177-D: variable "jpgstart"  was declared but never referenced
+      u32 i,jpgstart,jpglen;
+..\Core\Src\OV_Frame.c(254): warning:  #177-D: variable "jpglen"  was declared but never referenced
+      u32 i,jpgstart,jpglen;
+..\Core\Src\OV_Frame.c(255): warning:  #177-D: variable "p"  was declared but never referenced
+      u8  *p;
+..\Core\Src\OV_Frame.c(257): warning:  #177-D: variable "headok"  was declared but never referenced
+  	  u8  headok=0;
+..\Core\Src\OV_Frame.c(258): warning:  #177-D: variable "effect"  was declared but never referenced
+  	  u8  effect=0;
+..\Core\Src\OV_Frame.c(631): warning:  #223-D: function "delay_ms" declared implicitly
+  					    delay_ms(800);
+..\Core\Src\OV_Frame.c(638): warning:  #223-D: function "delay_ms" declared implicitly
+  					    delay_ms(800);
+..\Core\Src\OV_Frame.c(647): warning:  #223-D: function "delay_ms" declared implicitly
+            delay_ms(800);
+..\Core\Src\OV_Frame.c(561): warning:  #177-D: variable "fac"  was declared but never referenced
+      float fac=0;
+..\Core\Src\OV_Frame.c(562): warning:  #177-D: variable "effect"  was declared but never referenced
+      u8 effect=0,contrast=2;
+..\Core\Src\OV_Frame.c(562): warning:  #177-D: variable "contrast"  was declared but never referenced
+      u8 effect=0,contrast=2;
+..\Core\Src\OV_Frame.c(563): warning:  #177-D: variable "scale"  was declared but never referenced
+      u8 scale=1;		//默认是全尺寸缩放
+..\Core\Src\OV_Frame.c(565): warning:  #177-D: variable "outputheight"  was declared but never referenced
+      u16 outputheight=0;
+..\Core\Src\OV_Frame.c(768): warning:  #223-D: function "delay_ms" declared implicitly
+  		 delay_ms(5);
+..\Core\Src\OV_Frame.c(418): warning:  #177-D: function "Copy_RAM_Data"  was declared but never referenced
+  static void  Copy_RAM_Data(u16 *P1, u16 *P2, u16 Num)
+..\Core\Src\OV_Frame.c: 18 warnings, 0 errors
 linking...
-AI-Deployment-Test\AI-Deployment-Test.axf: Error: L6220E: Execution region RW_IRAM2 size (728032 bytes) exceeds limit (524288 bytes). Region contains 222880 bytes of padding and 0 bytes of veneers (total 222880 bytes of linker generated content).
-Finished: 0 information, 0 warning and 1 error messages.
-"AI-Deployment-Test\AI-Deployment-Test.axf" - 1 Error(s), 0 Warning(s).
+Program Size: Code=77254 RO-data=55734 RW-data=31932 ZI-data=417628  
+FromELF: creating hex file...
+"AI-Deployment-Test\AI-Deployment-Test.axf" - 0 Error(s), 18 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -56,8 +94,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE@6.1.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Target not created.
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:05
 </pre>
 </body>
 </html>
