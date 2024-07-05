@@ -189,7 +189,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 W25QXX_Init(); 
 LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
-	GBK_Lib_Init();        //硬件GBK字库初始化--(如果使用不带字库的液晶屏版本，此处可以屏蔽，不做字库初始化）
+//	GBK_Lib_Init();        //硬件GBK字库初始化--(如果使用不带字库的液晶屏版本，此处可以屏蔽，不做字库初始化）
 	LCD_Clear(WHITE);      //清屏  	
 	ai_Init();
 	
