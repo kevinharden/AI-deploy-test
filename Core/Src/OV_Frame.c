@@ -710,7 +710,7 @@ void RGB565_mode(void)
 					 
 					 Start_OV5640_RGB(&hdcmi);  //Æô¶¯´«Êä
 				
-
+aiRun();
 				 
 	    }
 }
