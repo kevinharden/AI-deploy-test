@@ -8,7 +8,7 @@ ai-deployment-test\lcd.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.
 ai-deployment-test\lcd.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h
 ai-deployment-test\lcd.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h750xx.h
 ai-deployment-test\lcd.o: ../Drivers/CMSIS/Include/core_cm7.h
-ai-deployment-test\lcd.o: D:\keil538\ARM\ARMCC\Bin\..\include\stdint.h
+ai-deployment-test\lcd.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stdint.h
 ai-deployment-test\lcd.o: ../Drivers/CMSIS/Include/cmsis_version.h
 ai-deployment-test\lcd.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 ai-deployment-test\lcd.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
@@ -16,8 +16,8 @@ ai-deployment-test\lcd.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 ai-deployment-test\lcd.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h
 ai-deployment-test\lcd.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h
 ai-deployment-test\lcd.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-ai-deployment-test\lcd.o: D:\keil538\ARM\ARMCC\Bin\..\include\stddef.h
-ai-deployment-test\lcd.o: D:\keil538\ARM\ARMCC\Bin\..\include\math.h
+ai-deployment-test\lcd.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stddef.h
+ai-deployment-test\lcd.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\math.h
 ai-deployment-test\lcd.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h
 ai-deployment-test\lcd.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h
 ai-deployment-test\lcd.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio_ex.h
@@ -45,11 +45,11 @@ ai-deployment-test\lcd.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.
 ai-deployment-test\lcd.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h
 ai-deployment-test\lcd.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
 ai-deployment-test\lcd.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
-ai-deployment-test\lcd.o: D:\keil538\ARM\ARMCC\Bin\..\include\stdlib.h
+ai-deployment-test\lcd.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stdlib.h
 ai-deployment-test\lcd.o: ..\Drivers\LCD240\font.h
 ai-deployment-test\lcd.o: ../Core/Inc/usart.h
 ai-deployment-test\lcd.o: ..\Drivers\LCD240\Text.h
 ai-deployment-test\lcd.o: ..\Drivers\LCD240\Dis_Picture.h
-ai-deployment-test\lcd.o: D:\keil538\ARM\ARMCC\Bin\..\include\string.h
+ai-deployment-test\lcd.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\string.h
 ai-deployment-test\lcd.o: ..\Drivers\LCD240\Picture.h
 ai-deployment-test\lcd.o: ../Core/Inc/spi.h
