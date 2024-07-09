@@ -346,7 +346,7 @@ void JPEG_mode(void)
           SCB_CleanDCache_by_Addr((uint32_t*)JPEG_DATA, JPEG_CharSize);
           HAL_UART_Transmit_DMA(&huart1, (uint8_t*)JPEG_DATA, JPEG_CharSize);
 
-          while(HAL_DMA_GetState(&hdma_usart1_tx) == HAL_DMA_STATE_BUSY);
+          //while(HAL_DMA_GetState(&hdma_usart1_tx) == HAL_DMA_STATE_BUSY);
 					
            JPEG_CharSize=0;						
 						

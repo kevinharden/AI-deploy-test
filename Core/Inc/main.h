@@ -57,6 +57,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define Scanner_Pin GPIO_PIN_0
+#define Scanner_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
 #define u8 uint8_t
