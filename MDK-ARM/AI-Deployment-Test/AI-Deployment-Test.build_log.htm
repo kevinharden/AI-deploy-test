@@ -3,32 +3,96 @@
 <pre>
 <h1>礦ision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: μVision V5.40.0.0
-Copyright (C) 2024 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: 8 kevinzakeLUC@outlook.com, 8, LIC=8VRJ7-E8Z5C-HLUCL-05IHV-AHNEL-M28CW
+IDE-Version: μVision V5.38.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: ZhangMingyu Eren, QUT, LIC=32B1Q-NQG5L-CXXU6-DVMHH-3UTX7-6B4RH
  
 Tool Versions:
-Toolchain:       MDK-ARM Plus  Version: 5.40.0.3
-Toolchain Path:  D:\applications\Keil 5\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.06 update 6 (build 750)
-Assembler:       Armasm.exe V5.06 update 6 (build 750)
-Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
-Library Manager: ArmAr.exe V5.06 update 6 (build 750)
-Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
-CPU DLL:         SARMCM3.DLL V5.40.0.3
+Toolchain:       MDK-ARM Plus  Version: 5.38.0.0
+Toolchain Path:  D:\keil538\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.38.0.0
 Dialog DLL:      DCM.DLL V1.17.5.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.3.0.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.1.0.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-D:\GIT Repo\AI-Deployment-Test\MDK-ARM\AI-Deployment-Test.uvprojx
+D:\electronic engineering\Embedded contest\ai-deployment-testing\MDK-ARM\AI-Deployment-Test.uvprojx
 Project File Date:  07/09/2024
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\applications\Keil 5\ARM\ARMCC\Bin'
-Build target 'AI-Deployment-Test'
-Note: source file '../Core/Src/system_stm32h7xx.c' - object file renamed from 'AI-Deployment-Test\system_stm32h7xx.o' to 'AI-Deployment-Test\system_stm32h7xx_1.o'.
-Note: source file '..\Drivers\LCD240\lcd.c' - object file renamed from 'AI-Deployment-Test\lcd.o' to 'AI-Deployment-Test\lcd_1.o'.
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'D:\keil538\ARM\ARMCC\Bin'
+Rebuild target 'AI-Deployment-Test'
+assembling startup_stm32h750xx.s...
+compiling dma.c...
+compiling dcmi.c...
+compiling gpio.c...
+compiling crc.c...
+compiling GBK_LibDrive.c...
+compiling w25qxx.c...
+..\Core\Src\w25qxx.c(83): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  			QSPI_Send_CMD(W25X_SetReadParam,0,0,QSPI_INSTRUCTION_4_LINES,QSPI_ADDRESS_NONE,QSPI_ADDRESS_8_BITS,QSPI_DATA_4_LINES); 		//QPI,设置读参数指令,地址为0,4线传数据_8位地址_无地址_4线传输指令,无空周期,1个字节数据
+..\Core\Src\w25qxx.c(86): warning:  #223-D: function "QSPI_Transmit" declared implicitly
+  			QSPI_Transmit(&temp,1);		//发送1个字节	  
+..\Core\Src\w25qxx.c(116): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  	QSPI_Send_CMD(W25X_EnterQPIMode,0,0,QSPI_INSTRUCTION_1_LINE,QSPI_ADDRESS_NONE,QSPI_ADDRESS_8_BITS,QSPI_DATA_NONE);//写command指令,地址为0,无数据_8位地址_无地址_单线传输指令,无空周期,0个字节数据
+..\Core\Src\w25qxx.c(136): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  	QSPI_Send_CMD(W25X_ExitQPIMode,0,0,QSPI_INSTRUCTION_4_LINES,QSPI_ADDRESS_NONE,QSPI_ADDRESS_8_BITS,QSPI_DATA_NONE);//写command指令,地址为0,无数据_8位地址_无地址_4线传输指令,无空周期,0个字节数据
+..\Core\Src\w25qxx.c(205): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  		QSPI_Send_CMD(command,0,0,QSPI_INSTRUCTION_4_LINES,QSPI_ADDRESS_NONE,QSPI_ADDRESS_8_BITS,QSPI_DATA_4_LINES);	//QPI,写command指令,地址为0,4线传数据_8位地址_无地址_4线传输指令,无空周期,1个字节数据
+..\Core\Src\w25qxx.c(207): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  		QSPI_Send_CMD(command,0,0,QSPI_INSTRUCTION_1_LINE,QSPI_ADDRESS_NONE,QSPI_ADDRESS_8_BITS,QSPI_DATA_1_LINE);				//SPI,写command指令,地址为0,单线传数据_8位地址_无地址_单线传输指令,无空周期,1个字节数据
+..\Core\Src\w25qxx.c(209): warning:  #223-D: function "QSPI_Receive" declared implicitly
+  	QSPI_Receive(&byte,1);	        
+..\Core\Src\w25qxx.c(246): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  		QSPI_Send_CMD(command,0,0,QSPI_INSTRUCTION_4_LINES,QSPI_ADDRESS_NONE,QSPI_ADDRESS_8_BITS,QSPI_DATA_4_LINES);	//QPI,写command指令,地址为0,4线传数据_8位地址_无地址_4线传输指令,无空周期,1个字节数据
+..\Core\Src\w25qxx.c(248): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  		QSPI_Send_CMD(command,0,0, QSPI_INSTRUCTION_1_LINE,QSPI_ADDRESS_NONE,QSPI_ADDRESS_8_BITS,QSPI_DATA_1_LINE);		//SPI,写command指令,地址为0,单线传数据_8位地址_无地址_单线传输指令,无空周期,1个字节数据
+..\Core\Src\w25qxx.c(250): warning:  #223-D: function "QSPI_Transmit" declared implicitly
+  	QSPI_Transmit(&sr,1);	         	      
+..\Core\Src\w25qxx.c(270): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  		QSPI_Send_CMD(W25X_WriteEnable,0,0,QSPI_INSTRUCTION_4_LINES,QSPI_ADDRESS_NONE,QSPI_ADDRESS_8_BITS,QSPI_DATA_NONE);	//QPI,写使能指令,地址为0,无数据_8位地址_无地址_4线传输指令,无空周期,0个字节数据
+..\Core\Src\w25qxx.c(272): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  		QSPI_Send_CMD(W25X_WriteEnable,0,0,QSPI_INSTRUCTION_1_LINE,QSPI_ADDRESS_NONE,QSPI_ADDRESS_8_BITS,QSPI_DATA_NONE);				//SPI,写使能指令,地址为0,无数据_8位地址_无地址_单线传输指令,无空周期,0个字节数据
+..\Core\Src\w25qxx.c(292): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  		QSPI_Send_CMD(W25X_WriteDisable,0,0,QSPI_INSTRUCTION_4_LINES,QSPI_ADDRESS_NONE,QSPI_ADDRESS_8_BITS,QSPI_DATA_NONE); //QPI,写禁止指令,地址为0,无数据_8位地址_无地址_4线传输指令,无空周期,0个字节数据
+..\Core\Src\w25qxx.c(294): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  		QSPI_Send_CMD(W25X_WriteDisable,0,0,QSPI_INSTRUCTION_1_LINE,QSPI_ADDRESS_NONE,QSPI_ADDRESS_8_BITS,QSPI_DATA_NONE);  //SPI,写禁止指令,地址为0,无数据_8位地址_无地址_单线传输指令,无空周期,0个字节数据 
+..\Core\Src\w25qxx.c(323): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  		QSPI_Send_CMD(W25X_ManufactDeviceID,0,0,QSPI_INSTRUCTION_4_LINES,QSPI_ADDRESS_4_LINES,QSPI_ADDRESS_24_BITS,QSPI_DATA_4_LINES);//QPI,读id,地址为0,4线传输数据_24位地址_4线传输地址_4线传输指令,无空周期,2个字节数据
+..\Core\Src\w25qxx.c(325): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  		QSPI_Send_CMD(W25X_ManufactDeviceID,0,0,QSPI_INSTRUCTION_1_LINE,QSPI_ADDRESS_1_LINE,QSPI_ADDRESS_24_BITS,QSPI_DATA_1_LINE);			//SPI,读id,地址为0,单线传输数据_24位地址_单线传输地址_单线传输指令,无空周期,2个字节数据
+..\Core\Src\w25qxx.c(327): warning:  #223-D: function "QSPI_Receive" declared implicitly
+  	QSPI_Receive(temp,2);
+..\Core\Src\w25qxx.c(352): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  	QSPI_Send_CMD(W25X_FastReadData,ReadAddr,8,QSPI_INSTRUCTION_4_LINES,QSPI_ADDRESS_4_LINES,QSPI_ADDRESS_24_BITS,QSPI_DATA_4_LINES);	//QPI,快速读数据,地址为ReadAddr,4线传输数据_24位地址_4线传输地址_4线传输指令,8空周期,NumByteToRead个数据
+..\Core\Src\w25qxx.c(353): warning:  #223-D: function "QSPI_Receive" declared implicitly
+  	QSPI_Receive(pBuffer,NumByteToRead); 
+..\Core\Src\w25qxx.c(378): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  	QSPI_Send_CMD(W25X_PageProgram,WriteAddr,0,QSPI_INSTRUCTION_4_LINES,QSPI_ADDRESS_4_LINES,QSPI_ADDRESS_24_BITS,QSPI_DATA_4_LINES);	//QPI,页写指令,地址为WriteAddr,4线传输数据_24位地址_4线传输地址_4线传输指令,无空周期,NumByteToWrite个数据
+..\Core\Src\w25qxx.c(379): warning:  #223-D: function "QSPI_Transmit" declared implicitly
+  	QSPI_Transmit(pBuffer,NumByteToWrite);	         	      
+..\Core\Src\w25qxx.c(521): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  	  QSPI_Send_CMD(W25X_ChipErase,0,0,QSPI_INSTRUCTION_4_LINES,QSPI_ADDRESS_NONE,QSPI_ADDRESS_8_BITS,QSPI_DATA_NONE);//QPI,写全片擦除指令,地址为0,无数据_8位地址_无地址_4线传输指令,无空周期,0个字节数据
+..\Core\Src\w25qxx.c(547): warning:  #223-D: function "QSPI_Send_CMD" declared implicitly
+  	  QSPI_Send_CMD(W25X_SectorErase,Dst_Addr,0,QSPI_INSTRUCTION_4_LINES,QSPI_ADDRESS_4_LINES,QSPI_ADDRESS_24_BITS,QSPI_DATA_NONE);//QPI,写扇区擦除指令,地址为0,无数据_24位地址_4线传输地址_4线传输指令,无空周期,0个字节数据
+..\Core\Src\w25qxx.c: 23 warnings, 0 errors
+compiling delay.c...
+compiling ov5640.c...
+compiling led.c...
+compiling sccb.c...
+compiling sdmmc_sdcard.c...
+..\Core\Src\sdmmc_sdcard.c(69): warning:  #177-D: variable "clkdiv"  was declared but never referenced
+  	u8 clkdiv=0;
+..\Core\Src\sdmmc_sdcard.c(656): warning:  #223-D: function "printf" declared implicitly
+          printf("SDMMC_Send_Cmd=%d\r\n",errorstatus);
+..\Core\Src\sdmmc_sdcard.c(667): warning:  #223-D: function "printf" declared implicitly
+  			printf("SD_CMD_READ_MULT_BLOCK Error\r\n");
+..\Core\Src\sdmmc_sdcard.c: 3 warnings, 0 errors
 compiling OV_Frame.c...
 ..\Core\Src\OV_Frame.c(274): warning:  #223-D: function "sprintf" declared implicitly
       sprintf((char*)Print_buf,"JPEG Size:%s",JPEG_SIZE_TBL[size]);
@@ -69,34 +133,102 @@ compiling OV_Frame.c...
 ..\Core\Src\OV_Frame.c(418): warning:  #177-D: function "Copy_RAM_Data"  was declared but never referenced
   static void  Copy_RAM_Data(u16 *P1, u16 *P2, u16 Num)
 ..\Core\Src\OV_Frame.c: 19 warnings, 0 errors
+compiling key.c...
+..\Core\Src\key.c(119): warning:  #223-D: function "printf" declared implicitly
+  				  printf("\r\n KEY1 按键按下一次 \r\n");
+..\Core\Src\key.c: 1 warning, 0 errors
+compiling main.c...
+../Core/Src/main.c(126): warning:  #550-D: variable "err"  was set but never used
+  	ai_error err;
+../Core/Src/main.c(232): warning:  #223-D: function "sprintf" declared implicitly
+  		sprintf((char*)Textbuf,"SD Card Size: %u MB",SDCardInfo.CardCapacity>>20); //显示无符号十进制整数		
+../Core/Src/main.c(270): warning:  #223-D: function "KEY_Scan" declared implicitly
+  		key_F=KEY_Scan(0); 		//得到键值   //按键扫描测试函数
+../Core/Src/main.c(89): warning:  #177-D: variable "in_data"  was declared but never referenced
+  static ai_float in_data[AI_NETWORK_IN_1_SIZE];
+../Core/Src/main.c(92): warning:  #177-D: variable "out_data"  was declared but never referenced
+  static ai_float out_data[AI_NETWORK_OUT_1_SIZE];
+../Core/Src/main.c: 5 warnings, 0 errors
+compiling sdmmc.c...
+compiling quadspi.c...
+compiling stm32h7xx_hal_cortex.c...
+compiling stm32h7xx_hal_crc_ex.c...
+compiling spi.c...
+compiling stm32h7xx_hal_crc.c...
+compiling stm32h7xx_hal_msp.c...
+compiling stm32h7xx_hal_flash_ex.c...
+compiling usart.c...
+compiling stm32h7xx_hal_gpio.c...
+compiling stm32h7xx_hal_flash.c...
+compiling stm32h7xx_it.c...
+../Core/Src/stm32h7xx_it.c(241): warning:  #223-D: function "RGBLine_Shift" declared implicitly
+  	RGBLine_Shift(&hdcmi);
+../Core/Src/stm32h7xx_it.c(236): warning:  #550-D: variable "ErrorCode"  was set but never used
+  	int ErrorCode=0;
+../Core/Src/stm32h7xx_it.c(237): warning:  #550-D: variable "State"  was set but never used
+  	int State=0;
+../Core/Src/stm32h7xx_it.c: 3 warnings, 0 errors
+compiling stm32h7xx_hal_rcc.c...
+compiling stm32h7xx_hal_rcc_ex.c...
+compiling stm32h7xx_hal_hsem.c...
+compiling stm32h7xx_hal_exti.c...
+compiling stm32h7xx_hal_i2c_ex.c...
+compiling stm32h7xx_hal_qspi.c...
+compiling stm32h7xx_ll_delayblock.c...
+compiling stm32h7xx_hal_dcmi.c...
+compiling stm32h7xx_hal_mdma.c...
+compiling stm32h7xx_ll_sdmmc.c...
+compiling stm32h7xx_hal_pwr.c...
+compiling stm32h7xx_hal.c...
+compiling stm32h7xx_hal_i2c.c...
+compiling stm32h7xx_hal_dma_ex.c...
+compiling stm32h7xx_hal_pwr_ex.c...
+compiling FONT.c...
+compiling stm32h7xx_hal_dma.c...
+compiling network.c...
+compiling network_data.c...
+compiling network_data_params.c...
+compiling stm32h7xx_hal_tim.c...
+compiling system_stm32h7xx.c...
+compiling stm32h7xx_hal_spi_ex.c...
+compiling stm32h7xx_hal_sd_ex.c...
+compiling stm32h7xx_hal_uart_ex.c...
+compiling Text.c...
+compiling stm32h7xx_hal_tim_ex.c...
+compiling stm32h7xx_hal_spi.c...
+compiling lcd.c...
+compiling Picture.c...
+compiling Dis_Picture.c...
+compiling stm32h7xx_hal_sd.c...
+compiling stm32h7xx_hal_uart.c...
 linking...
-Program Size: Code=78902 RO-data=55734 RW-data=31932 ZI-data=417628  
+Program Size: Code=78910 RO-data=55734 RW-data=31932 ZI-data=417628  
 FromELF: creating hex file...
-"AI-Deployment-Test\AI-Deployment-Test.axf" - 0 Error(s), 19 Warning(s).
+"AI-Deployment-Test\AI-Deployment-Test.axf" - 0 Error(s), 54 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                https://www.keil.com/pack/ARM.CMSIS.6.1.0.pack
-                ARM::CMSIS@6.1.0
+                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
+                ARM.CMSIS.5.9.0
                 CMSIS (Common Microcontroller Software Interface Standard)
-   * Component: CORE Version: 6.1.0
+   * Component: CORE Version: 5.6.0
 
 Package Vendor: Keil
-                https://www.keil.com/pack/Keil.STM32H7xx_DFP.3.1.1.pack
-                Keil::STM32H7xx_DFP@3.1.1
+                https://www.keil.com/pack/Keil.STM32H7xx_DFP.3.1.0.pack
+                Keil.STM32H7xx_DFP.3.1.0
                 STMicroelectronics STM32H7 Series Device Support and Examples
 
 <h2>Collection of Component include folders:</h2>
   ./RTE/_AI-Deployment-Test
-  D:/applications/Keil 5/ARM/PACK/ARM/CMSIS/6.1.0/CMSIS/Core/Include
-  D:/applications/Keil 5/ARM/PACK/Keil/STM32H7xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32H7xx/Include
+  D:/keil538/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  D:/keil538/Keil/STM32H7xx_DFP/3.1.0/Drivers/CMSIS/Device/ST/STM32H7xx/Include
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE@6.1.0
+   * Component: ARM::CMSIS:CORE:5.6.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:05
+Build Time Elapsed:  00:01:13
 </pre>
 </body>
 </html>

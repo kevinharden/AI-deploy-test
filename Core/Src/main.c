@@ -75,6 +75,10 @@ uint8_t  key_F;//键值
 
 /* USER CODE BEGIN PV */
 
+uint8_t rx_data[5];    //UART_RX  data
+int Mode_Flag=0;       //Mode
+int Print_Flag=0;       //Mode1
+int Pay_Flag=0;       //Mode2
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -187,6 +191,11 @@ int main(void)
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
+HAL_UART_Receive_IT(&huart1,(uint8_t *)&rx_data, 4); //UART1_RX_IT_START
+
+	
+	
+	
 W25QXX_Init(); 
 LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
 //	GBK_Lib_Init();        //硬件GBK字库初始化--(如果使用不带字库的液晶屏版本，此处可以屏蔽，不做字库初始化）
@@ -351,7 +360,29 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{ 	
+	
+	if (huart->Instance == USART1)
+{
+	HAL_UART_Receive_IT(&huart1,(uint8_t *)&rx_data, 4);
+	if((rx_data[0]==1)&&(rx_data[1]==1)&&(rx_data[2]==0)&&(rx_data[3]==1))
+  Mode_Flag=1;
+	else if((rx_data[0]==1)&&(rx_data[1]==1)&&(rx_data[2]==0)&&(rx_data[3]==2))
+	Mode_Flag=2;
+	
+	if((rx_data[0]==1)&&(rx_data[1]==1)&&(rx_data[2]==0)&&(rx_data[3]==0)&&((Mode_Flag==1)||(Mode_Flag==2)))
+	Mode_Flag=0;
+	
+	if((rx_data[0]==1)&&(rx_data[1]==1)&&(rx_data[2]==0)&&(rx_data[3]==3)&&(Mode_Flag==1))
+	Print_Flag=1;
+	if((rx_data[0]==1)&&(rx_data[1]==1)&&(rx_data[2]==0)&&(rx_data[3]==4)&&(Mode_Flag==2))
+	Pay_Flag=1;
+}
 
+
+
+}
 /* USER CODE END 4 */
 
 /**
