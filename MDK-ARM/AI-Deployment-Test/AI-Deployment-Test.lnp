@@ -20,6 +20,7 @@
 "ai-deployment-test\usart.o"
 "ai-deployment-test\stm32h7xx_it.o"
 "ai-deployment-test\stm32h7xx_hal_msp.o"
+"ai-deployment-test\task.o"
 "ai-deployment-test\stm32h7xx_hal_cortex.o"
 "ai-deployment-test\stm32h7xx_hal_crc.o"
 "ai-deployment-test\stm32h7xx_hal_crc_ex.o"
@@ -60,7 +61,7 @@
 "ai-deployment-test\network.o"
 "ai-deployment-test\network_data.o"
 "ai-deployment-test\network_data_params.o"
---diag_suppress 6314,6329 --strict --scatter "AI-Deployment-Test.sct"
+--library_type=microlib --diag_suppress 6314,6329 --strict --scatter "AI-Deployment-Test.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "AI-Deployment-Test.map" -o AI-Deployment-Test\AI-Deployment-Test.axf

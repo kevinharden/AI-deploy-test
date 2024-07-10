@@ -39,6 +39,12 @@
 #include "network.h"
 #include "network_data_params.h"
 #include "network_data.h"
+
+
+#include "task.h"
+#include <string.h>
+#include "stdint.h"
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -74,11 +80,22 @@ uint8_t  key_F;//键值
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+int test=0;
+uint8_t se[60]={0x1B,0x40,0x1A,0x5B,0x01,0x00,0x00,0x00,0x00,0xB0,0x01,0x40,0x01,0x00,0x1D,0x48,0x02,0x1A,0x30,0x00,0x50,0x00,0x70,0x00,0x0c,0x45,0x02,0x00,0x31,0x37,0x33,0x36,0x32,0x30,0x33,0x34,0x39,0x33,0x32,0x00,0x1A,0x54,0x01,0x00,0x31,0x35,0x30,0x45,0x72,0x65,0x6E,0x00,0x1A,0x5D,0x00,0x1A,0x4F,0x00,0x1b,0x6d};
 
-uint8_t rx_data[5];    //UART_RX  data
-int Mode_Flag=0;       //Mode
+uint8_t rx_data[5];     //UART_RX  data
+int Mode_Flag=0;        //Mode
 int Print_Flag=0;       //Mode1
-int Pay_Flag=0;       //Mode2
+int Pay_Flag=0;         //Mode2
+int Scan_Flag=0;        //Scan state
+int Judge_Flag=0;        //Scan state
+uint16_t Weight=0;      //Weight data
+uint16_t Type=0;        //Type data
+uint16_t Sig_Money=0;   //sigMoney data
+uint16_t Money=0;       //Money data
+char tjcstr[100];
+
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -192,87 +209,209 @@ int main(void)
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
 HAL_UART_Receive_IT(&huart1,(uint8_t *)&rx_data, 4); //UART1_RX_IT_START
-
+HAL_UART_Receive_IT(&huart4,(uint8_t *)&rx_data, 4); //UART1_RX_IT_START
 	
 	
-	
-W25QXX_Init(); 
-LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
-//	GBK_Lib_Init();        //硬件GBK字库初始化--(如果使用不带字库的液晶屏版本，此处可以屏蔽，不做字库初始化）
-	LCD_Clear(WHITE);      //清屏  	
-	ai_Init();
-	
-	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_1,GPIO_PIN_RESET);
-	
-//	ai_network_create_and_init(
-//  ai_handle* network, const ai_handle activations[], const ai_handle weights[]);
 //	
-	
-	
-	
-	 Draw_Font16B(16,10,RED,"  STM32H7 DCMI OV5640 ");
-	 Draw_Font16B(16,30,BLUE,"     嵌入式开发网   ");	 
-	 Draw_Font16B(16,50,BLUE," mcudev.taobao.com  "); 
-	 
+//W25QXX_Init(); 
+//LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
+////	GBK_Lib_Init();        //硬件GBK字库初始化--(如果使用不带字库的液晶屏版本，此处可以屏蔽，不做字库初始化）
+//	LCD_Clear(WHITE);      //清屏  	
+//	ai_Init();
+//	
+//	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_1,GPIO_PIN_RESET);
+//	
+////	ai_network_create_and_init(
+////  ai_handle* network, const ai_handle activations[], const ai_handle weights[]);
+////	
+//	
+//	
+//	
+//	 Draw_Font16B(16,10,RED,"  STM32H7 DCMI OV5640 ");
+//	 Draw_Font16B(16,30,BLUE,"     嵌入式开发网   ");	 
+//	 Draw_Font16B(16,50,BLUE," mcudev.taobao.com  "); 
+//	 
 
-	if(W25QXX_ReadID()!=W25Q64)
-		Draw_Font16B(16,80,RED,"W25Q64 Error!");	//检测W25Q128错误
-	else //SPI FLASH 正常
-	{   														 
-		Draw_Font16B(16,80,BLUE,"W25Q64 OK OK OK ");	 
-		Draw_Font16B(16,100,BLUE,"SPI FLASH Size:8MB");	 
-	} 
+//	if(W25QXX_ReadID()!=W25Q64)
+//		Draw_Font16B(16,80,RED,"W25Q64 Error!");	//检测W25Q128错误
+//	else //SPI FLASH 正常
+//	{   														 
+//		Draw_Font16B(16,80,BLUE,"W25Q64 OK OK OK ");	 
+//		Draw_Font16B(16,100,BLUE,"SPI FLASH Size:8MB");	 
+//	} 
 
-	
-	  while(SD_Init())//检测不到SD卡
-    {
-        Draw_Font16B(16,140,RED,"SD Card Error!");
-			  Draw_Font16B(16,160,RED,"Please Check! ");
-        HAL_Delay(500);
-        Draw_Font16B(16,160,RED,"               ");
-        HAL_Delay(500);
+//	
+//	  while(SD_Init())//检测不到SD卡
+//    {
+//        Draw_Font16B(16,140,RED,"SD Card Error!");
+//			  Draw_Font16B(16,160,RED,"Please Check! ");
+//        HAL_Delay(500);
+//        Draw_Font16B(16,160,RED,"               ");
+//        HAL_Delay(500);
 
-    }
-		
-		
-                                       
-    Draw_Font16B(16,140,BLUE,"SD Card OK    "); //检测SD卡成功
-		
-		sprintf((char*)Textbuf,"SD Card Size: %u MB",SDCardInfo.CardCapacity>>20); //显示无符号十进制整数		
-   
-		Draw_Font16B(16,160,BLUE,Textbuf);  				//显示存储卡容量
-
-
-    while(OV5640_Init())//初始化OV5640
-    {
-        Draw_Font16B(24,200,RED,"OV5640 ERROR");
-        HAL_Delay(200);
-        Draw_Font16B(24,200,RED,"             ");
-        HAL_Delay(200);
-        //LED2_Toggle;
-    }
-		
-		if(Camera_ID!=OV5640_ID)
-			   sprintf((char*)Print_buf,"Camera_ID: ERR");
-			else 
-				 sprintf((char*)Print_buf,"Camera_ID: 0x%4X",Camera_ID);
-				
-		 Draw_Font16B(24,200,BLUE,Print_buf);//显示提示内容
-
-     Draw_Font16B(24,220,BLUE,"OV5640 OK");	
+//    }
+//		
+//		
+//                                       
+//    Draw_Font16B(16,140,BLUE,"SD Card OK    "); //检测SD卡成功
+//		
+//		sprintf((char*)Textbuf,"SD Card Size: %u MB",SDCardInfo.CardCapacity>>20); //显示无符号十进制整数		
+//   
+//		Draw_Font16B(16,160,BLUE,Textbuf);  				//显示存储卡容量
 
 
+//    while(OV5640_Init())//初始化OV5640
+//    {
+//        Draw_Font16B(24,200,RED,"OV5640 ERROR");
+//        HAL_Delay(200);
+//        Draw_Font16B(24,200,RED,"             ");
+//        HAL_Delay(200);
+//        //LED2_Toggle;
+//    }
+//		
+//		if(Camera_ID!=OV5640_ID)
+//			   sprintf((char*)Print_buf,"Camera_ID: ERR");
+//			else 
+//				 sprintf((char*)Print_buf,"Camera_ID: 0x%4X",Camera_ID);
+//				
+//		 Draw_Font16B(24,200,BLUE,Print_buf);//显示提示内容
+
+//     Draw_Font16B(24,220,BLUE,"OV5640 OK");	
 
 
-	 // MX_USB_DEVICE_Init();//  先屏蔽前面初始化部分，等其他模块都初始化后，再启动USB工作
-		
-		HAL_Delay(1000);		
+
+
+//	 // MX_USB_DEVICE_Init();//  先屏蔽前面初始化部分，等其他模块都初始化后，再启动USB工作
+//		
+//		HAL_Delay(1000);		
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		if(Mode_Flag==1)
+		{
+		             	//weight start
+			            //if weight>50
+			My_delay_ms(1000);
+			            //send weight data
+			
+			            //Type?
+			            //Sig_Money?
+			            //Money?
+			            //send Data
+			//TEST_BEGIN1
+		  while(test==0)//TEST
+			  ;
+			My_delay_ms(100);
+			
+			HMISendstart();  
+	   sprintf(tjcstr, "n0.val=266");
+	   HMISends(tjcstr); 
+	   HMISendb(0xff);		
+	
+						HMISendstart();  
+	   sprintf(tjcstr, "t5.txt=\"苹果\"");
+	   HMISends(tjcstr); 
+	   HMISendb(0xff);	
+			
+									HMISendstart();  
+	   sprintf(tjcstr, "n2.val=12");
+	   HMISends(tjcstr); 
+	   HMISendb(0xff);	
+
+												HMISendstart();  
+	   sprintf(tjcstr, "x0.val=3192");
+	   HMISends(tjcstr); 
+	   HMISendb(0xff);	
+		 
+
+			 
+				//TEST_END1
+			while (Print_Flag==0)
+				;
+			if(Print_Flag==1)
+ HAL_UART_Transmit(&huart2, se, 60, HAL_MAX_DELAY); // 使用最大延时
+
+
+
+
+			//printf weight&money data
+		  while ((__HAL_UART_GET_FLAG(&huart1, UART_FLAG_TC))==0) 
+			  ;
+		         test=0;     //Clear flag
+
+			
+		
+		
+		}
+		
+		if(Mode_Flag==2)
+{
+//      while(Scan_Flag==0)
+//        ;				 //wait for scan
+			           //weight start
+			           //if weight>50
+			
+			while( (__HAL_UART_GET_FLAG(&huart1, UART_FLAG_RXNE))==0)
+				;
+						//TEST_BEGIN2
+
+			My_delay_ms(100);
+			
+			HMISendstart();  
+	   sprintf(tjcstr, "t2.txt=\"成功识别\"");
+	   HMISends(tjcstr); 
+	   HMISendb(0xff);		
+	
+						HMISendstart();  
+	   sprintf(tjcstr, "n0.val=266");
+	   HMISends(tjcstr); 
+	   HMISendb(0xff);	
+			
+									HMISendstart();  
+	   sprintf(tjcstr, "t6.txt=\"苹果\"");
+	   HMISends(tjcstr); 
+	   HMISendb(0xff);	
+
+												HMISendstart();  
+	   sprintf(tjcstr, "n1.val=12");
+	   HMISends(tjcstr); 
+	   HMISendb(0xff);	
+		 
+		 												HMISendstart();  
+	   sprintf(tjcstr, "x0.val=3192");
+	   HMISends(tjcstr); 
+	   HMISendb(0xff);	
+		 
+		 		 
+		 												HMISendstart();  
+	   sprintf(tjcstr, "t11.txt=\"匹配成功\"");
+	   HMISends(tjcstr); 
+	   HMISendb(0xff);	
+		 
+			 
+				//TEST_END2
+			
+			
+			
+			My_delay_ms(1000);
+			           //weight judge
+			
+			while(Pay_Flag==1)
+				;
+				         //send 4Gmodule data
+			
+			
+}
+		
+		
+		
+		
+		
+		
+		
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -376,9 +515,20 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	
 	if((rx_data[0]==1)&&(rx_data[1]==1)&&(rx_data[2]==0)&&(rx_data[3]==3)&&(Mode_Flag==1))
 	Print_Flag=1;
-	if((rx_data[0]==1)&&(rx_data[1]==1)&&(rx_data[2]==0)&&(rx_data[3]==4)&&(Mode_Flag==2))
+	if((rx_data[0]==1)&&(rx_data[1]==1)&&(rx_data[2]==0)&&(rx_data[3]==4)&&(Mode_Flag==2)&&(Judge_Flag==1))
 	Pay_Flag=1;
+		if((rx_data[0]==1)&&(rx_data[1]==1)&&(rx_data[2]==0)&&(rx_data[3]==9))
+ test=1;
 }
+
+	if (huart->Instance == UART4)
+{
+	HAL_UART_Receive_IT(&huart4,(uint8_t *)&rx_data, 4);
+if((rx_data[0]==1)&&(rx_data[1]==1)&&(rx_data[2]==0)&&(rx_data[3]==5)&&(Mode_Flag==2))
+	Scan_Flag=1;
+	
+}
+
 
 
 

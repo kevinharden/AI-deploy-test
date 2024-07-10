@@ -10,7 +10,7 @@ ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal
 ai-deployment-test\ov_frame.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h
 ai-deployment-test\ov_frame.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h750xx.h
 ai-deployment-test\ov_frame.o: ../Drivers/CMSIS/Include/core_cm7.h
-ai-deployment-test\ov_frame.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stdint.h
+ai-deployment-test\ov_frame.o: D:\keil538\ARM\ARMCC\Bin\..\include\stdint.h
 ai-deployment-test\ov_frame.o: ../Drivers/CMSIS/Include/cmsis_version.h
 ai-deployment-test\ov_frame.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 ai-deployment-test\ov_frame.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
@@ -18,8 +18,8 @@ ai-deployment-test\ov_frame.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 ai-deployment-test\ov_frame.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h
 ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h
 ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-ai-deployment-test\ov_frame.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stddef.h
-ai-deployment-test\ov_frame.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\math.h
+ai-deployment-test\ov_frame.o: D:\keil538\ARM\ARMCC\Bin\..\include\stddef.h
+ai-deployment-test\ov_frame.o: D:\keil538\ARM\ARMCC\Bin\..\include\math.h
 ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h
 ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h
 ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio_ex.h
@@ -51,11 +51,11 @@ ai-deployment-test\ov_frame.o: ../Core/Inc/sccb.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/key.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/led.h
 ai-deployment-test\ov_frame.o: ../Drivers/LCD240/lcd.h
-ai-deployment-test\ov_frame.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stdlib.h
+ai-deployment-test\ov_frame.o: D:\keil538\ARM\ARMCC\Bin\..\include\stdlib.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/Dis_Picture.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/Text.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/font.h
-ai-deployment-test\ov_frame.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\string.h
+ai-deployment-test\ov_frame.o: D:\keil538\ARM\ARMCC\Bin\..\include\string.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/Picture.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/GBK_LibDrive.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/usart.h
