@@ -94,6 +94,7 @@ uint16_t Type=0;        //Type data
 uint16_t Sig_Money=0;   //sigMoney data
 uint16_t Money=0;       //Money data
 char tjcstr[100];
+uint16_t ai_result;
 
 
 /* USER CODE END PV */
@@ -107,10 +108,10 @@ AI_ALIGNED(32)
 static ai_u8 activations[AI_NETWORK_DATA_ACTIVATIONS_SIZE];
 
 AI_ALIGNED(32)
-static ai_float in_data[AI_NETWORK_IN_1_SIZE];
+__attribute__((section (".RAM_D2"))) static ai_float in_data[AI_NETWORK_IN_1_SIZE];
 
 AI_ALIGNED(32)
-static ai_float out_data[AI_NETWORK_OUT_1_SIZE];
+__attribute__((section (".RAM_D2"))) static ai_float out_data[AI_NETWORK_OUT_1_SIZE];
 
 static ai_buffer *ai_input;
 static ai_buffer *ai_output;

@@ -55,7 +55,7 @@ u8 OV_mode=0;							//bit0:0,RGB565模式;1,JPEG模式
 
 u16 yoffset=0;							//y方向的偏移量
 
-
+extern uint16_t ai_result;
 
 
 #if  USE_HORIZONTAL  
@@ -135,8 +135,8 @@ const u16 jpeg_img_size_tbl[][2]=
 
 
 
-const u8*EFFECTS_TBL[7]= {"Normal","Cool","Warm","B&W","Yellowish ","Inverse","Greenish"};	//7种特效
-const u8*JPEG_SIZE_TBL[12]= {"QQVGA","QVGA","VGA","SVGA","XGA","WXGA","WXGA+","SXGA","UXGA","1080P","QXGA","500W"}; //JPEG图片 12种尺寸
+//const u8*EFFECTS_TBL[7]= {"Normal","Cool","Warm","B&W","Yellowish ","Inverse","Greenish"};	//7种特效
+//const u8*JPEG_SIZE_TBL[12]= {"QQVGA","QVGA","VGA","SVGA","XGA","WXGA","WXGA+","SXGA","UXGA","1080P","QXGA","500W"}; //JPEG图片 12种尺寸
 
 
 //建立一个结构体
@@ -271,7 +271,7 @@ void JPEG_mode(void)
 //    Draw_Font16B(30,140,BLUE,"KEY2:Effects"); 			//特效
 //    Draw_Font16B(30,160,BLUE,"KEY_UP:Size");				//分辨率设置
 	
-    sprintf((char*)Print_buf,"JPEG Size:%s",JPEG_SIZE_TBL[size]);
+//    sprintf((char*)Print_buf,"JPEG Size:%s",JPEG_SIZE_TBL[size]);
 	
     Draw_Font16B(30,90,BLUE,Print_buf);					       //显示当前JPEG分辨率
 	 
@@ -532,7 +532,7 @@ void Start_OV5640_RGB(DCMI_HandleTypeDef *hdcmi)
 	
 		__HAL_DCMI_ENABLE_IT(hdcmi, DCMI_IER_FRAME_IE);                                       //使用帧中断
 	    
-    HAL_DCMI_Start_DMA(hdcmi, DCMI_MODE_SNAPSHOT, (uint32_t)&RGB_Line_DATA, RGB_Width/2); 	  //启动 JPEG传输拍照  连续传输
+    HAL_DCMI_Start_DMA(hdcmi, DCMI_MODE_SNAPSHOT, (uint32_t)&RGB_DATA, RGB_buf_size); 	  //启动 JPEG传输拍照  连续传输
 	
 	  curline=0;
 	
@@ -557,7 +557,7 @@ void Start_OV5640_RGB(DCMI_HandleTypeDef *hdcmi)
 
 void RGB565_mode(void)
 {
-    
+    int aiflag=0;
     float fac=0;
     u8 effect=0,contrast=2;
     u8 scale=1;		//默认是全尺寸缩放
@@ -616,38 +616,41 @@ void RGB565_mode(void)
 		
     while(1)
     {
-			
-        Key_Flag=KEY_Scan(0);   //获取键值
-			
-			
-			  if(Key_Flag==KEY1_PRES)//按键1切换功能
-				{
-						Key_N++;
-						if(Key_N>=3)Key_N=0;
-		
-					if(Key_N==1)
-						{
-							Draw_Font16B(30,50,BLUE,"OV5640: DCMI_Stop");//显示提示内容
-					    delay_ms(800);
-							
-////							DCMI_Stop(); //非KEY1按下,停止显示
-						}
-					else if(Key_N==2) 
-						{	
-							Draw_Font16B(30,50,BLUE,"OV5640: DCMI_Start");//显示提示内容
-					    delay_ms(800);
-							
-////							DCMI_Start();	//重新开始传输
-						}					
-				}
-			 else if(Key_Flag==KEY2_PRES)//按键1切换功能
-				{
-					Draw_Font16B(30,50,BLUE,"OV5640: Focus");//显示提示内容
-					
-          delay_ms(800);
-					
-					OV5640_Focus_Single(); //执行一次自动对焦
-				}
+			if(aiflag>2)
+			{
+			aiRun(&RGB_DATA, &ai_result);
+			}
+//        Key_Flag=KEY_Scan(0);   //获取键值
+//			
+//			
+//			  if(Key_Flag==KEY1_PRES)//按键1切换功能
+//				{
+//						Key_N++;
+//						if(Key_N>=3)Key_N=0;
+//		
+//					if(Key_N==1)
+//						{
+//							Draw_Font16B(30,50,BLUE,"OV5640: DCMI_Stop");//显示提示内容
+//					    delay_ms(800);
+//							
+//////							DCMI_Stop(); //非KEY1按下,停止显示
+//						}
+//					else if(Key_N==2) 
+//						{	
+//							Draw_Font16B(30,50,BLUE,"OV5640: DCMI_Start");//显示提示内容
+//					    delay_ms(800);
+//							
+//////							DCMI_Start();	//重新开始传输
+//						}					
+//				}
+//			 else if(Key_Flag==KEY2_PRES)//按键1切换功能
+//				{
+//					Draw_Font16B(30,50,BLUE,"OV5640: Focus");//显示提示内容
+//					
+//          delay_ms(800);
+//					
+//					OV5640_Focus_Single(); //执行一次自动对焦
+//				}
 				
 				
 ////////////////////        if(Key_Flag)
@@ -710,7 +713,7 @@ void RGB565_mode(void)
 					 
 					 Start_OV5640_RGB(&hdcmi);  //启动传输
 				
-
+			aiflag++;
 				 
 	    }
 }

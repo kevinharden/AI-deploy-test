@@ -37700,7 +37700,7 @@
         }
     ],
     "c_activations_count": 1,
-    "date_time": "Fri Jun 28 18:18:04 2024",
+    "date_time": "Tue Jul 16 21:45:41 2024",
     "model_name": "quantized_model",
     "tool_version": {
         "major": 1,
@@ -37718,8 +37718,10 @@
     "c_weights_count": 1,
     "weights": {"weights_array": {
         "buffer_data_size": 420480,
+        "buffer_crc": 0,
         "pool_size": 420480,
-        "buffer_c_name": "AI_NETWORK_DATA_WEIGHTS_ADDR",
+        "buffer_c_type": "u64",
+        "buffer_c_name": "s_network_weights_array_u64",
         "buffer_offsets": [
             {
                 "lite_tag": null,
@@ -38464,9 +38466,10 @@
                 "buffer_name": "gemm_68_bias_array"
             }
         ],
-        "buffer_c_name_addr": "AI_NETWORK_DATA_WEIGHTS_ADDR",
-        "buffer_file_bin": "network_data.bin",
-        "pool_id": 0
+        "buffer_c_name_addr": "s_network_weights_array_u64",
+        "buffer_c_count": 52560,
+        "pool_id": 0,
+        "buffer_c_data": []
     }},
     "memory_footprint": {
         "kernel_ram": 32660,
@@ -38475,9 +38478,12 @@
             0,
             0
         ],
-        "series": "generic",
+        "series": "stm32h7",
         "activations": 229888,
-        "weights": 420480
+        "toolchain_flash": 1630,
+        "toolchain_ram": 0,
+        "weights": 420480,
+        "toolchain": "arm-none-eabi-gcc (GNU Tools for STM32 12.3.rel1.20240306-1730) 12.3.1 20230626"
     },
     "version": "1.2",
     "tool_api_version": {

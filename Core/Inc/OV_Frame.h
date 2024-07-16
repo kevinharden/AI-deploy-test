@@ -25,7 +25,7 @@ void jpeg_data_process(void);
 void JPEG_mode(void);
 void rgblcd_dcmi_rx_callback(void);
 void RGB565_mode(void);
-	
+int aiRun(const void *in_data, void *out_data);
 
 
 
