@@ -9,4 +9,5 @@ void My_delay_ms(uint32_t t);
 void HMISendstart(void);
 void HMISends(uint8_t *buf1);
 void HMISendb(uint8_t k);
+void Camera_Init(void);
 #endif /*__ TASK_H__ */
