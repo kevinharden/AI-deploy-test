@@ -84,7 +84,7 @@ int test=0;
 uint8_t se[60]={0x1B,0x40,0x1A,0x5B,0x01,0x00,0x00,0x00,0x00,0xB0,0x01,0x40,0x01,0x00,0x1D,0x48,0x02,0x1A,0x30,0x00,0x50,0x00,0x70,0x00,0x0c,0x45,0x02,0x00,0x31,0x37,0x33,0x36,0x32,0x30,0x33,0x34,0x39,0x33,0x32,0x00,0x1A,0x54,0x01,0x00,0x31,0x35,0x30,0x45,0x72,0x65,0x6E,0x00,0x1A,0x5D,0x00,0x1A,0x4F,0x00,0x1b,0x6d};
 
 uint8_t rx_data[5];     //UART_RX  data
-int Mode_Flag=0;        //Mode
+int Mode_Flag=0;        //cash or weight Mode
 int Print_Flag=0;       //Mode1
 int Pay_Flag=0;         //Mode2
 int Scan_Flag=0;        //Scan state
@@ -212,78 +212,67 @@ HAL_UART_Receive_IT(&huart1,(uint8_t *)&rx_data, 4); //UART1_RX_IT_START
 HAL_UART_Receive_IT(&huart4,(uint8_t *)&rx_data, 4); //UART1_RX_IT_START
 	
 	
-//	
-//W25QXX_Init(); 
-//LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
-////	GBK_Lib_Init();        //硬件GBK字库初始化--(如果使用不带字库的液晶屏版本，此处可以屏蔽，不做字库初始化）
-//	LCD_Clear(WHITE);      //清屏  	
-//	ai_Init();
-//	
-//	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_1,GPIO_PIN_RESET);
-//	
-////	ai_network_create_and_init(
-////  ai_handle* network, const ai_handle activations[], const ai_handle weights[]);
-////	
-//	
-//	
-//	
-//	 Draw_Font16B(16,10,RED,"  STM32H7 DCMI OV5640 ");
-//	 Draw_Font16B(16,30,BLUE,"     嵌入式开发网   ");	 
-//	 Draw_Font16B(16,50,BLUE," mcudev.taobao.com  "); 
-//	 
+	
+W25QXX_Init(); 
+LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
+//	GBK_Lib_Init();        //硬件GBK字库初始化--(如果使用不带字库的液晶屏版本，此处可以屏蔽，不做字库初始化）
+	LCD_Clear(WHITE);      //清屏  	
+	ai_Init();
+	
+	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_1,GPIO_PIN_RESET);
+	
+	 Draw_Font16B(16,10,RED,"  STM32H7 DCMI OV5640 ");
+	 Draw_Font16B(16,30,BLUE,"     嵌入式开发网   ");	 
+	 Draw_Font16B(16,50,BLUE," mcudev.taobao.com  "); 
+	 
 
-//	if(W25QXX_ReadID()!=W25Q64)
-//		Draw_Font16B(16,80,RED,"W25Q64 Error!");	//检测W25Q128错误
-//	else //SPI FLASH 正常
-//	{   														 
-//		Draw_Font16B(16,80,BLUE,"W25Q64 OK OK OK ");	 
-//		Draw_Font16B(16,100,BLUE,"SPI FLASH Size:8MB");	 
-//	} 
+	if(W25QXX_ReadID()!=W25Q64)
+		Draw_Font16B(16,80,RED,"W25Q64 Error!");	//检测W25Q128错误
+	else //SPI FLASH 正常
+	{   														 
+		Draw_Font16B(16,80,BLUE,"W25Q64 OK OK OK ");	 
+		Draw_Font16B(16,100,BLUE,"SPI FLASH Size:8MB");	 
+	} 
 
-//	
-//	  while(SD_Init())//检测不到SD卡
-//    {
-//        Draw_Font16B(16,140,RED,"SD Card Error!");
-//			  Draw_Font16B(16,160,RED,"Please Check! ");
-//        HAL_Delay(500);
-//        Draw_Font16B(16,160,RED,"               ");
-//        HAL_Delay(500);
+	
+	  while(SD_Init())//检测不到SD卡
+    {
+        Draw_Font16B(16,140,RED,"SD Card Error!");
+			  Draw_Font16B(16,160,RED,"Please Check! ");
+        HAL_Delay(500);
+        Draw_Font16B(16,160,RED,"               ");
+        HAL_Delay(500);
 
-//    }
-//		
-//		
-//                                       
-//    Draw_Font16B(16,140,BLUE,"SD Card OK    "); //检测SD卡成功
-//		
-//		sprintf((char*)Textbuf,"SD Card Size: %u MB",SDCardInfo.CardCapacity>>20); //显示无符号十进制整数		
-//   
-//		Draw_Font16B(16,160,BLUE,Textbuf);  				//显示存储卡容量
+    }
+		
+		
+                                       
+    Draw_Font16B(16,140,BLUE,"SD Card OK    "); //检测SD卡成功
+		
+		sprintf((char*)Textbuf,"SD Card Size: %u MB",SDCardInfo.CardCapacity>>20); //显示无符号十进制整数		
+   
+		Draw_Font16B(16,160,BLUE,Textbuf);  				//显示存储卡容量
 
 
-//    while(OV5640_Init())//初始化OV5640
-//    {
-//        Draw_Font16B(24,200,RED,"OV5640 ERROR");
-//        HAL_Delay(200);
-//        Draw_Font16B(24,200,RED,"             ");
-//        HAL_Delay(200);
-//        //LED2_Toggle;
-//    }
-//		
-//		if(Camera_ID!=OV5640_ID)
-//			   sprintf((char*)Print_buf,"Camera_ID: ERR");
-//			else 
-//				 sprintf((char*)Print_buf,"Camera_ID: 0x%4X",Camera_ID);
-//				
-//		 Draw_Font16B(24,200,BLUE,Print_buf);//显示提示内容
+    while(OV5640_Init())//初始化OV5640
+    {
+        Draw_Font16B(24,200,RED,"OV5640 ERROR");
+        HAL_Delay(200);
+        Draw_Font16B(24,200,RED,"             ");
+        HAL_Delay(200);
+        //LED2_Toggle;
+    }
+		
+		if(Camera_ID!=OV5640_ID)
+			   sprintf((char*)Print_buf,"Camera_ID: ERR");
+			else 
+				 sprintf((char*)Print_buf,"Camera_ID: 0x%4X",Camera_ID);
+				
+		 Draw_Font16B(24,200,BLUE,Print_buf);//显示提示内容
 
-//     Draw_Font16B(24,220,BLUE,"OV5640 OK");	
-
-
-
-
-//	 // MX_USB_DEVICE_Init();//  先屏蔽前面初始化部分，等其他模块都初始化后，再启动USB工作
-//		
-//		HAL_Delay(1000);		
+     Draw_Font16B(24,220,BLUE,"OV5640 OK");	
+		
+		HAL_Delay(1000);		
   /* USER CODE END 2 */
 
   /* Infinite loop */
