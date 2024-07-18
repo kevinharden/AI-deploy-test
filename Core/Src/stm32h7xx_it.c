@@ -238,9 +238,9 @@ void DMA1_Stream1_IRQHandler(void)
 
 	State=HAL_DMA_GetState(&hdma_dcmi);
 	ErrorCode=HAL_DMA_GetError(&hdma_dcmi);
-	RGBLine_Shift(&hdcmi);
+//	RGBLine_Shift(&hdcmi);
 //while(HAL_DMA_GetState(&hdma_dcmi) == HAL_DMA_STATE_BUSY);
-
+HAL_GPIO_TogglePin(LED_G_GPIO_Port,LED_G_Pin);
   /* USER CODE END DMA1_Stream1_IRQn 0 */
   HAL_DMA_IRQHandler(&hdma_dcmi);
   /* USER CODE BEGIN DMA1_Stream1_IRQn 1 */

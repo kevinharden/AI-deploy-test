@@ -1,4 +1,4 @@
-//#include "OV_Frame.h"
+#include "OV_Frame.h"
 #include "key.h"
 
 #include "lcd.h"
@@ -15,6 +15,8 @@
 
 #include "usart.h"
 #include "delay.h"
+
+#include "task.h"
 
 #include "network.h"
 #include "network_data_params.h"
@@ -59,6 +61,8 @@ u16 yoffset=0;							//y方向的偏移量
 
 extern uint16_t ai_result;
 extern ai_float out_data[AI_NETWORK_OUT_1_SIZE];
+extern ai_float in_data[AI_NETWORK_IN_1_SIZE];
+extern DCMI_HandleTypeDef hdcmi;
 #if  USE_HORIZONTAL  
 
 #define RGB_Width    320 //根据屏幕方向，设置缓存大小和格式
@@ -84,10 +88,10 @@ extern ai_float out_data[AI_NETWORK_OUT_1_SIZE];
 
 
 
-__align(4)   uint32_t RGB_Line_DATA[RGB_Width/2]__attribute((at(0X24010000)));            //缓存一行    
+//__align(4)   uint32_t RGB_Line_DATA[RGB_Width/2]__attribute((at(0X24009000)));            //缓存一行    
 
 
-__align(2)   uint16_t RGB_DATA[RGB_Height][RGB_Width]__attribute((at(0X24010000)));       //缓存一屏幕数据    //缓存一屏幕数据   
+__align(2)   uint16_t RGB_DATA[RGB_Height][RGB_Width]__attribute((at(0X24009000)));       //缓存一屏幕数据    //缓存一屏幕数据   
 
 
 //__align(4)   uint32_t JPEG_DATA[1]__attribute((at(0X20010000)));              //JPEG数据缓存buf,定义在LCD帧缓存之后JPEG_buf_size
@@ -492,7 +496,7 @@ void RGBLine_Shift(DCMI_HandleTypeDef *hdcmi)
   u16 Num_H;//行数
 	u16 *R_Buf; //刷屏数据指针
 	
-static void  RGB_Refresh_LCD(void)
+void  RGB_Refresh_LCD(void)
 {
 	  
 		LCD_Set_Window(0,0,lcddev.width,lcddev.height);//设置全屏窗口
@@ -533,8 +537,8 @@ void Start_OV5640_RGB(DCMI_HandleTypeDef *hdcmi)
 	
 		__HAL_DCMI_ENABLE_IT(hdcmi, DCMI_IER_FRAME_IE);                                       //使用帧中断
 	    
-    HAL_DCMI_Start_DMA(hdcmi, DCMI_MODE_SNAPSHOT, (uint32_t)&RGB_DATA, RGB_buf_size); 	  //启动 JPEG传输拍照  连续传输
-	
+    //HAL_DCMI_Start_DMA(hdcmi, DCMI_MODE_SNAPSHOT, (uint32_t)&RGB_DATA, RGB_buf_size); 	  //启动 JPEG传输拍照  连续传输
+	HAL_DCMI_Start_DMA(hdcmi, DCMI_MODE_CONTINUOUS, (uint32_t)&RGB_DATA, RGB_buf_size); 
 	  curline=0;
 	
 	
@@ -614,111 +618,12 @@ void RGB565_mode(void)
     Start_OV5640_RGB(&hdcmi);  //启动传输
 			
     LCD_Clear(BLACK);
-		
-    while(1)
-    {
-			
-//        Key_Flag=KEY_Scan(0);   //获取键值
-//			
-//			
-//			  if(Key_Flag==KEY1_PRES)//按键1切换功能
-//				{
-//						Key_N++;
-//						if(Key_N>=3)Key_N=0;
-//		
-//					if(Key_N==1)
-//						{
-//							Draw_Font16B(30,50,BLUE,"OV5640: DCMI_Stop");//显示提示内容
-//					    delay_ms(800);
-//							
-//////							DCMI_Stop(); //非KEY1按下,停止显示
-//						}
-//					else if(Key_N==2) 
-//						{	
-//							Draw_Font16B(30,50,BLUE,"OV5640: DCMI_Start");//显示提示内容
-//					    delay_ms(800);
-//							
-//////							DCMI_Start();	//重新开始传输
-//						}					
-//				}
-//			 else if(Key_Flag==KEY2_PRES)//按键1切换功能
-//				{
-//					Draw_Font16B(30,50,BLUE,"OV5640: Focus");//显示提示内容
-//					
-//          delay_ms(800);
-//					
-//					OV5640_Focus_Single(); //执行一次自动对焦
-//				}
-				
-				
-////////////////////        if(Key_Flag)
-////////////////////        {
-////////////////////					
-////////////////////					
-////////////////////            if(Key_Flag!=KEY1_PRES)  //没有很多按键
-////////////////////							{
-////////////////////								
-////////////////////							  DCMI_Stop(); //非KEY1按下,停止显示
-////////////////////								
-////////////////////						   }
-////////////////////							
-////////////////////            switch(Key_Flag)
-////////////////////            {
-////////////////////							
-////////////////////							
-//////////////////////							case KEY1_PRES:	//对比度设置
-//////////////////////									contrast++;
-//////////////////////									if(contrast>6)contrast=0;
-//////////////////////									OV5640_Contrast(contrast);
-//////////////////////									sprintf((char*)Print_buf,"Contrast:%d",(signed char)contrast-3);
-//////////////////////									break;
-////////////////////							case KEY2_PRES:	//执行一次自动对焦
-////////////////////									OV5640_Focus_Single();
-////////////////////									break;
-////////////////////							
-////////////////////							
-//////////////////////            case KEY2_PRES:	//特效设置
-//////////////////////                effect++;
-//////////////////////                if(effect>6)effect=0;
-//////////////////////                OV5640_Special_Effects(effect);//设置特效
-//////////////////////                sprintf((char*)Print_buf,"%s",EFFECTS_TBL[effect]);
-//////////////////////                break;
-//////////////////////            case WKUP_PRES:	//1:1尺寸(显示真实尺寸)/缩放
-//////////////////////                scale=!scale;
-//////////////////////                if(scale==0)
-//////////////////////                {
-//////////////////////                    fac=(float)800/outputheight;	//得到比例因子
-//////////////////////                    OV5640_OutSize_Set((1280-fac*lcddev.width)/2,(800-fac*outputheight)/2,lcddev.width,outputheight);
-//////////////////////                    sprintf((char*)Print_buf,"Full Size 1:1");
-//////////////////////                } else
-//////////////////////                {
-//////////////////////                    OV5640_OutSize_Set(4,0,lcddev.width,outputheight);
-//////////////////////                    sprintf((char*)Print_buf,"Scale");
-//////////////////////                }
-//////////////////////                break;
-////////////////////            }
-////////////////////            if(Key_Flag!=KEY1_PRES)	//非KEY1按下
-////////////////////            {
-////////////////////                Draw_Font16B(30,50,BLUE,Print_buf);//显示提示内容
-////////////////////                delay_ms(800);
-////////////////////                DCMI_Start();	//重新开始传输
-////////////////////            }
-////////////////////        }
-        	
-           LED2_Toggle;//LED灯闪 提示系统在运行					
-				
-					 RGB_Refresh_LCD();//根据帧数据，进行刷屏
-					 
-					 Start_OV5640_RGB(&hdcmi);  //启动传输
-					 
-				if(aiflag>2)
-			{
-			aiRun(RGB_DATA, out_data);
-			}
-			
-			aiflag++;
+	
+    //for(int i;i>500;i++)
+//{
 				 
-	    }
+	
+	    
 }
 
 
@@ -778,7 +683,6 @@ void OV_Camera_Demo(uint8_t Key_Value)
 			
     else if(OV_mode==2) JPEG_mode();//选择JPEG串口输出模式
 			
-
 }
 
 

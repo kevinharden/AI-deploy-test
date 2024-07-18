@@ -73,3 +73,4 @@ ai-deployment-test\main.o: ../X-CUBE-AI/App/network_data_params.h
 ai-deployment-test\main.o: ../X-CUBE-AI/App/network_data.h
 ai-deployment-test\main.o: ../Core/Inc/task.h
 ai-deployment-test\main.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stdio.h
+ai-deployment-test\main.o: ../Core/Inc/led.h

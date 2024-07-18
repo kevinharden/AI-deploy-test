@@ -1,5 +1,7 @@
 ai-deployment-test\ov_frame.o: ..\Core\Src\OV_Frame.c
-ai-deployment-test\ov_frame.o: ../Core/Inc/key.h
+ai-deployment-test\ov_frame.o: ../Core/Inc/OV_Frame.h
+ai-deployment-test\ov_frame.o: ../Core/Inc/sccb.h
+ai-deployment-test\ov_frame.o: ../Core/Inc/ov5640.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/main.h
 ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/stm32h7xx_hal_conf.h
@@ -45,6 +47,8 @@ ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal
 ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h
 ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h
 ai-deployment-test\ov_frame.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
+ai-deployment-test\ov_frame.o: ../Core/Inc/sccb.h
+ai-deployment-test\ov_frame.o: ../Core/Inc/key.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/led.h
 ai-deployment-test\ov_frame.o: ../Drivers/LCD240/lcd.h
 ai-deployment-test\ov_frame.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\stdlib.h
@@ -55,12 +59,10 @@ ai-deployment-test\ov_frame.o: D:\applications\Keil 5\ARM\ARMCC\Bin\..\include\s
 ai-deployment-test\ov_frame.o: ../Core/Inc/Picture.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/GBK_LibDrive.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/usart.h
-ai-deployment-test\ov_frame.o: ../Core/Inc/ov5640.h
-ai-deployment-test\ov_frame.o: ../Core/Inc/sccb.h
-ai-deployment-test\ov_frame.o: ../Core/Inc/ov5640.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/dcmi.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/dma.h
 ai-deployment-test\ov_frame.o: ../Core/Inc/delay.h
+ai-deployment-test\ov_frame.o: ../Core/Inc/task.h
 ai-deployment-test\ov_frame.o: ../X-CUBE-AI/App/network.h
 ai-deployment-test\ov_frame.o: ../X-CUBE-AI/App/network_config.h
 ai-deployment-test\ov_frame.o: ../Middlewares/ST/AI/Inc/ai_platform.h

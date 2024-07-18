@@ -45,6 +45,8 @@
 #include <string.h>
 #include "stdint.h"
 #include "stdio.h"
+#include "lcd.h"
+#include "led.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,6 +56,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define RGB_Width    128 //根据屏幕方向，设置缓存大小和格式
+#define RGB_Height	 128//根据屏幕
+#define CHANNELS 3
 extern uint8_t USB_STATUS_REG; //USB状态
 extern uint8_t  bDeviceState;		//默认没有连接 
 
@@ -68,6 +73,7 @@ extern uint8_t  OV_mode;				//bit0:  1,RGB565模式;2,JPEG模式
 extern uint16_t Camera_ID;      //摄像头型号ID号
 extern uint8_t Print_buf[32];	//消息缓存区
 
+extern uint16_t RGB_DATA[RGB_Height][RGB_Width];
 
 uint8_t  key_F;//键值
 /* USER CODE END PD */
@@ -81,17 +87,17 @@ uint8_t  key_F;//键值
 
 /* USER CODE BEGIN PV */
 int test=0;
-uint8_t se[60]={0x1B,0x40,0x1A,0x5B,0x01,0x00,0x00,0x00,0x00,0xB0,0x01,0x40,0x01,0x00,0x1D,0x48,0x02,0x1A,0x30,0x00,0x50,0x00,0x70,0x00,0x0c,0x45,0x02,0x00,0x31,0x37,0x33,0x36,0x32,0x30,0x33,0x34,0x39,0x33,0x32,0x00,0x1A,0x54,0x01,0x00,0x31,0x35,0x30,0x45,0x72,0x65,0x6E,0x00,0x1A,0x5D,0x00,0x1A,0x4F,0x00,0x1b,0x6d};
+__attribute__((section (".RAM_D2"))) uint8_t se[60]={0x1B,0x40,0x1A,0x5B,0x01,0x00,0x00,0x00,0x00,0xB0,0x01,0x40,0x01,0x00,0x1D,0x48,0x02,0x1A,0x30,0x00,0x50,0x00,0x70,0x00,0x0c,0x45,0x02,0x00,0x31,0x37,0x33,0x36,0x32,0x30,0x33,0x34,0x39,0x33,0x32,0x00,0x1A,0x54,0x01,0x00,0x31,0x35,0x30,0x45,0x72,0x65,0x6E,0x00,0x1A,0x5D,0x00,0x1A,0x4F,0x00,0x1b,0x6d};
 
-uint8_t rx_data[5];     //UART_RX  data
-int Mode_Flag=0;        //cash or weight Mode
-int Print_Flag=0;       //Mode1
-int Pay_Flag=0;         //Mode2
-int Scan_Flag=0;        //Scan state
-int Judge_Flag=0;        //Scan state
-uint16_t Weight=0;      //Weight data
-uint16_t Type=0;        //Type data
-uint16_t Sig_Money=0;   //sigMoney data
+__attribute__((section (".RAM_D2"))) uint8_t rx_data[5];     //UART_RX  data
+__attribute__((section (".RAM_D2"))) int Mode_Flag=0;        //cash or weight Mode
+__attribute__((section (".RAM_D2"))) int Print_Flag=0;       //Mode1
+__attribute__((section (".RAM_D2"))) int Pay_Flag=0;         //Mode2
+__attribute__((section (".RAM_D2"))) int Scan_Flag=0;        //Scan state
+__attribute__((section (".RAM_D2"))) int Judge_Flag=0;        //Scan state
+__attribute__((section (".RAM_D2"))) uint16_t Weight=0;      //Weight data
+__attribute__((section (".RAM_D2"))) uint16_t Type=0;        //Type data
+__attribute__((section (".RAM_D2"))) uint16_t Sig_Money=0;   //sigMoney data
 uint16_t Money=0;       //Money data
 //char tjcstr[100];
 uint16_t ai_result;
@@ -108,10 +114,10 @@ AI_ALIGNED(32)
 static ai_u8 activations[AI_NETWORK_DATA_ACTIVATIONS_SIZE];
 
 AI_ALIGNED(32)
-__attribute__((section (".RAM_D2"))) static ai_float in_data[AI_NETWORK_IN_1_SIZE];
+static ai_float in_data[AI_NETWORK_IN_1_SIZE];
 
 AI_ALIGNED(32)
- ai_float out_data[AI_NETWORK_OUT_1_SIZE];
+__attribute__((section (".RAM_D2"))) static ai_float out_data[AI_NETWORK_OUT_1_SIZE];
 
 static ai_buffer *ai_input;
 static ai_buffer *ai_output;
@@ -123,42 +129,6 @@ static ai_buffer *ai_output;
 
 uint8_t Textbuf[32];
 
-/*神经网络初始化*/
-int ai_Init(void)
-{
-	ai_error err;
-	
-	const ai_handle acts[] = { activations };
-  err = ai_network_create_and_init(&network, acts, NULL);
-	if(err.type != AI_ERROR_NONE)
-	{
-	
-	}
-	
-	ai_input = ai_network_inputs_get(network, NULL);
-	ai_output = ai_network_outputs_get(network, NULL);
-	
-	return 0;
-}
-
-/*AI 运行处理函数*/
-int aiRun(const void *in_data, void *out_data)
-{
-	ai_i32 n_batch;
-	ai_error err;
-	
-	ai_input[0].data = AI_HANDLE_PTR(in_data);
-	ai_input[0].data = AI_HANDLE_PTR(out_data);
-	
-	n_batch = ai_network_run(network, &ai_input[0], &ai_output[0]);
-	if(n_batch != 1)
-	{
-	err=ai_network_get_error(network);
-	};
-	
-	return 0;
-	
-}
 
 /* USER CODE END 0 */
 
@@ -221,16 +191,31 @@ LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
 	ai_Init();
 	
 	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_1,GPIO_PIN_RESET);
+	HAL_GPIO_TogglePin(LED_G_GPIO_Port,LED_G_Pin);
 	Camera_Init();
 	
 	OV_Camera_Demo(1);//选择摄像头工作模式演示	
-	
+	while(1)
+			{  LED2_Toggle;//LED灯闪 提示系统在运行					
+				
+					 RGB_Refresh_LCD();//根据帧数据，进行刷屏
+					 
+						 copy_rgb_to_in_data();
+				
+						 aiRun(RGB_DATA, out_data);
+				
+				Start_OV5640_RGB(&hdcmi);  //启动传输
+}				
+	//copy_rgb_to_in_data();
+			
+	//aiRun(in_data, out_data);
+			
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+
+  
 		if(Mode_Flag==1)
 		{
 		             	//weight start
@@ -345,7 +330,7 @@ LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
 				         //send 4Gmodule data
 			
 			
-}
+
 		
 		
 		
@@ -358,20 +343,9 @@ LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
     /* USER CODE BEGIN 3 */
 		key_F=KEY_Scan(0); 		//得到键值   //按键扫描测试函数
 		
-		
-		
-////		   Demo_Menu();//测试LCD 2寸高清屏
 	
-////		   delay_ms(500);
-////		   printf("\r\n串口1 发送的消息:\r\n");
 		
-
-		
-		
-		
-		
-		
-  }
+	  }
 
   /* USER CODE END 3 */
 }
@@ -470,10 +444,72 @@ if((rx_data[0]==1)&&(rx_data[1]==1)&&(rx_data[2]==0)&&(rx_data[3]==5)&&(Mode_Fla
 	
 }
 
-
-
-
 }
+
+/*神经网络初始化*/
+int ai_Init(void)
+{
+	ai_error err;
+	
+	const ai_handle acts[] = { activations };
+  err = ai_network_create_and_init(&network, acts, NULL);
+	if(err.type != AI_ERROR_NONE)
+	{
+	while(1)
+	HAL_GPIO_WritePin(LED_G_GPIO_Port,LED_G_Pin,GPIO_PIN_RESET);
+	}
+	
+	ai_input = ai_network_inputs_get(network, NULL);
+	ai_output = ai_network_outputs_get(network, NULL);
+	
+	return 0;
+}
+
+/*AI 运行处理函数*/
+int aiRun(const void *in_data, void *out_data)
+{
+	ai_i32 n_batch;
+	ai_error err;
+	
+	ai_input[0].data = AI_HANDLE_PTR(in_data);
+	ai_output[0].data = AI_HANDLE_PTR(out_data);
+	
+	n_batch = ai_network_run(network, &ai_input[0], &ai_output[0]);
+	if(n_batch != 1)
+	{
+	err=ai_network_get_error(network);
+	};
+	
+	return 0;
+	
+}
+/*RGB数据转移*/
+void copy_rgb_to_in_data() 
+	{
+     int index = 0;
+    for (int i = 0; i < RGB_Height; i++) {
+        for (int j = 0; j < RGB_Width; j++) {
+            // 提取RGB值
+            uint16_t pixel = RGB_DATA[i][j];
+            uint8_t r = (pixel >> 11) & 0x1F;  // 假设RGB565格式，提取红色分量
+            uint8_t g = (pixel >> 5) & 0x3F;   // 提取绿色分量
+            uint8_t b = pixel & 0x1F;          // 提取蓝色分量
+
+            // 将RGB值按顺序存入in_data
+            if (index < AI_NETWORK_IN_1_SIZE - CHANNELS + 1) {
+                in_data[index++] = (ai_float)r / 31.0f;   // 归一化到[0, 1]
+                in_data[index++] = (ai_float)g / 63.0f;   // 归一化到[0, 1]
+                in_data[index++] = (ai_float)b / 31.0f;   // 归一化到[0, 1]
+            } else {
+                // 如果in_data的大小小于RGB_DATA的总元素数，跳出循环
+                break;
+            }
+        }
+        if (index >= AI_NETWORK_IN_1_SIZE - CHANNELS + 1) {
+            break;
+        }
+    }
+	}
 /* USER CODE END 4 */
 
 /**
