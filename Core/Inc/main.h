@@ -59,6 +59,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define Scanner_Pin GPIO_PIN_0
 #define Scanner_GPIO_Port GPIOC
+#define LED_G_Pin GPIO_PIN_3
+#define LED_G_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
 #define u8 uint8_t

@@ -93,7 +93,7 @@ uint16_t Weight=0;      //Weight data
 uint16_t Type=0;        //Type data
 uint16_t Sig_Money=0;   //sigMoney data
 uint16_t Money=0;       //Money data
-char tjcstr[100];
+//char tjcstr[100];
 uint16_t ai_result;
 
 
@@ -111,7 +111,7 @@ AI_ALIGNED(32)
 __attribute__((section (".RAM_D2"))) static ai_float in_data[AI_NETWORK_IN_1_SIZE];
 
 AI_ALIGNED(32)
-__attribute__((section (".RAM_D2"))) static ai_float out_data[AI_NETWORK_OUT_1_SIZE];
+ ai_float out_data[AI_NETWORK_OUT_1_SIZE];
 
 static ai_buffer *ai_input;
 static ai_buffer *ai_output;
@@ -248,24 +248,24 @@ LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
 			My_delay_ms(100);
 			
 			HMISendstart();  
-	   sprintf(tjcstr, "n0.val=266");
-	   HMISends(tjcstr); 
-	   HMISendb(0xff);		
-	
-						HMISendstart();  
-	   sprintf(tjcstr, "t5.txt=\"苹果\"");
-	   HMISends(tjcstr); 
-	   HMISendb(0xff);	
-			
-									HMISendstart();  
-	   sprintf(tjcstr, "n2.val=12");
-	   HMISends(tjcstr); 
-	   HMISendb(0xff);	
+//	   sprintf(tjcstr, "n0.val=266");
+//	   HMISends(tjcstr); 
+//	   HMISendb(0xff);		
+//	
+//						HMISendstart();  
+//	   sprintf(tjcstr, "t5.txt=\"苹果\"");
+//	   HMISends(tjcstr); 
+//	   HMISendb(0xff);	
+//			
+//									HMISendstart();  
+//	   sprintf(tjcstr, "n2.val=12");
+//	   HMISends(tjcstr); 
+//	   HMISendb(0xff);	
 
-												HMISendstart();  
-	   sprintf(tjcstr, "x0.val=3192");
-	   HMISends(tjcstr); 
-	   HMISendb(0xff);	
+//												HMISendstart();  
+//	   sprintf(tjcstr, "x0.val=3192");
+//	   HMISends(tjcstr); 
+//	   HMISendb(0xff);	
 		 
 
 			 
@@ -302,35 +302,35 @@ LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
 			My_delay_ms(100);
 			
 			HMISendstart();  
-	   sprintf(tjcstr, "t2.txt=\"成功识别\"");
-	   HMISends(tjcstr); 
-	   HMISendb(0xff);		
-	
-						HMISendstart();  
-	   sprintf(tjcstr, "n0.val=266");
-	   HMISends(tjcstr); 
-	   HMISendb(0xff);	
-			
-									HMISendstart();  
-	   sprintf(tjcstr, "t6.txt=\"苹果\"");
-	   HMISends(tjcstr); 
-	   HMISendb(0xff);	
+//	   sprintf(tjcstr, "t2.txt=\"成功识别\"");
+//	   HMISends(tjcstr); 
+//	   HMISendb(0xff);		
+//	
+//						HMISendstart();  
+//	   sprintf(tjcstr, "n0.val=266");
+//	   HMISends(tjcstr); 
+//	   HMISendb(0xff);	
+//			
+//									HMISendstart();  
+//	   sprintf(tjcstr, "t6.txt=\"苹果\"");
+//	   HMISends(tjcstr); 
+//	   HMISendb(0xff);	
 
-												HMISendstart();  
-	   sprintf(tjcstr, "n1.val=12");
-	   HMISends(tjcstr); 
-	   HMISendb(0xff);	
-		 
-		 												HMISendstart();  
-	   sprintf(tjcstr, "x0.val=3192");
-	   HMISends(tjcstr); 
-	   HMISendb(0xff);	
-		 
-		 		 
-		 												HMISendstart();  
-	   sprintf(tjcstr, "t11.txt=\"匹配成功\"");
-	   HMISends(tjcstr); 
-	   HMISendb(0xff);	
+//												HMISendstart();  
+//	   sprintf(tjcstr, "n1.val=12");
+//	   HMISends(tjcstr); 
+//	   HMISendb(0xff);	
+//		 
+//		 												HMISendstart();  
+//	   sprintf(tjcstr, "x0.val=3192");
+//	   HMISends(tjcstr); 
+//	   HMISendb(0xff);	
+//		 
+//		 		 
+//		 												HMISendstart();  
+//	   sprintf(tjcstr, "t11.txt=\"匹配成功\"");
+//	   HMISends(tjcstr); 
+//	   HMISendb(0xff);	
 		 
 			 
 				//TEST_END2

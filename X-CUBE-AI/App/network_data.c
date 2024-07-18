@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    network_data.c
   * @author  AST Embedded Analytics Research Platform
-  * @date    Tue Jul  9 21:14:23 2024
+  * @date    Wed Jul 17 10:35:04 2024
   * @brief   AI Tool Automatic Code Generator for Embedded NN computing
   ******************************************************************************
   * @attention
@@ -18,7 +18,7 @@
 #include "network_data.h"
 #include "ai_platform_interface.h"
 
-#define AI_NETWORK_DATA_WEIGHTS_ADDR     (0x90000000)
+#define AI_NETWORK_DATA_WEIGHTS_ADDR     (0x8000000)
 
 AI_API_DECLARE_BEGIN
 ai_buffer g_network_data_map_activations[AI_NETWORK_DATA_ACTIVATIONS_COUNT] = {

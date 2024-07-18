@@ -1,5 +1,4 @@
-
-#include "OV_Frame.h"
+//#include "OV_Frame.h"
 #include "key.h"
 
 #include "lcd.h"
@@ -15,8 +14,11 @@
 #include "dma.h"
 
 #include "usart.h"
+#include "delay.h"
 
-
+#include "network.h"
+#include "network_data_params.h"
+#include "network_data.h"
 __attribute__((section (".RAM_D2"))) uint8_t Print_buf[48];	//消息缓存区
 
 __attribute__((section (".RAM_D2"))) uint8_t Key_Flag; //键值
@@ -56,8 +58,7 @@ u8 OV_mode=0;							//bit0:0,RGB565模式;1,JPEG模式
 u16 yoffset=0;							//y方向的偏移量
 
 extern uint16_t ai_result;
-
-
+extern ai_float out_data[AI_NETWORK_OUT_1_SIZE];
 #if  USE_HORIZONTAL  
 
 #define RGB_Width    320 //根据屏幕方向，设置缓存大小和格式
@@ -66,8 +67,8 @@ extern uint16_t ai_result;
 
 #else
 
-#define RGB_Width    240 //根据屏幕方向，设置缓存大小和格式
-#define RGB_Height	 320//根据屏幕
+#define RGB_Width    128 //根据屏幕方向，设置缓存大小和格式
+#define RGB_Height	 128//根据屏幕
 
 #endif 
 
@@ -89,7 +90,7 @@ __align(4)   uint32_t RGB_Line_DATA[RGB_Width/2]__attribute((at(0X24010000)));  
 __align(2)   uint16_t RGB_DATA[RGB_Height][RGB_Width]__attribute((at(0X24010000)));       //缓存一屏幕数据    //缓存一屏幕数据   
 
 
-__align(4)   uint32_t JPEG_DATA[1]__attribute((at(0X20010000)));              //JPEG数据缓存buf,定义在LCD帧缓存之后JPEG_buf_size
+//__align(4)   uint32_t JPEG_DATA[1]__attribute((at(0X20010000)));              //JPEG数据缓存buf,定义在LCD帧缓存之后JPEG_buf_size
  	
 
 uint16_t  curline=0;							   //摄像头输出数据,当前行编号
@@ -177,11 +178,11 @@ void Start_OV5640_JPEG(DCMI_HandleTypeDef *hdcmi)
 	
 ////		memset((uint8_t *)JPEG_DATA, 0, JPEG_buf_size*4);                                //清空接收缓冲区
 
-    SCB_InvalidateDCache_by_Addr((uint32_t*)JPEG_DATA, JPEG_CharSize);
+   // SCB_InvalidateDCache_by_Addr((uint32_t*)JPEG_DATA, JPEG_CharSize);
 	
 		__HAL_DCMI_ENABLE_IT(hdcmi, DCMI_IER_FRAME_IE);                                      //使用帧中断
 	  
-    HAL_DCMI_Start_DMA(hdcmi, DCMI_MODE_SNAPSHOT, (uint32_t)JPEG_DATA, JPEG_buf_size); 	//启动 JPEG传输拍照
+   // HAL_DCMI_Start_DMA(hdcmi, DCMI_MODE_SNAPSHOT, (uint32_t)JPEG_DATA, JPEG_buf_size); 	//启动 JPEG传输拍照
 		     
 	
 ////    HAL_DCMI_Stop(hdcmi);
@@ -312,13 +313,13 @@ void JPEG_mode(void)
 					
 					  LED2_Toggle;//LED灯闪 提示系统在运行
 					
-            P_data=(uint8_t*)JPEG_DATA;
+        //    P_data=(uint8_t*)JPEG_DATA;
 					
 					  JPEG_File_Length = JPEG_buf_size;//从缓冲区末尾开始判断是否为空
 					
 					  while (JPEG_File_Length > 0)     //计算出  JPEG的大小
 						{
-								if (JPEG_DATA[JPEG_File_Length - 1] != 0x00000000)
+					//			if (JPEG_DATA[JPEG_File_Length - 1] != 0x00000000)
 								{
 										break;
 								}
@@ -343,8 +344,8 @@ void JPEG_mode(void)
 					
 ////					while(HAL_DMA_GetState(&hdma_usart1_tx) == HAL_DMA_STATE_BUSY);
 
-          SCB_CleanDCache_by_Addr((uint32_t*)JPEG_DATA, JPEG_CharSize);
-          HAL_UART_Transmit_DMA(&huart1, (uint8_t*)JPEG_DATA, JPEG_CharSize);
+       //   SCB_CleanDCache_by_Addr((uint32_t*)JPEG_DATA, JPEG_CharSize);
+       //   HAL_UART_Transmit_DMA(&huart1, (uint8_t*)JPEG_DATA, JPEG_CharSize);
 
           //while(HAL_DMA_GetState(&hdma_usart1_tx) == HAL_DMA_STATE_BUSY);
 					
@@ -445,26 +446,26 @@ static void  Copy_RAM_Data(u16 *P1, u16 *P2, u16 Num)
 void RGBLine_Shift(DCMI_HandleTypeDef *hdcmi)
 {
 		
-	    	if(curline<lcddev.height)
-				{
-					
-										
-////					HAL_DCMI_Suspend(hdcmi); // 
-////					HAL_DCMI_Stop(hdcmi);
-					
-					__HAL_DCMI_ENABLE_IT(hdcmi, DCMI_IER_FRAME_IE);                                          //使用帧中断
-				
-					SCB_InvalidateDCache_by_Addr((uint32_t*)RGB_Line_DATA, RGB_Width/2);  //根据地址信息，无效其对应的 cache-line
-					
-					HAL_DCMI_Start_DMA(hdcmi, DCMI_MODE_SNAPSHOT,(uint32_t)&RGB_Line_DATA, RGB_Width/2); 	    //启动 JPEG传输拍照
-					
-					HAL_DMA_Abort(&hdma_memtomem_dma1_stream0);   //需要先停止DMA工作，再设置DMA 数据源地址和目标地址
-					
-					HAL_DMA_Start(&hdma_memtomem_dma1_stream0, (uint32_t)&RGB_Line_DATA, (uint32_t)&RGB_DATA[curline][0], RGB_Width*2); //使用DMA转存一行数据
-					
-  				++curline;
-				
-				}
+//	    	if(curline<lcddev.height)
+//				{
+//					
+//										
+//////					HAL_DCMI_Suspend(hdcmi); // 
+//////					HAL_DCMI_Stop(hdcmi);
+//					
+//					__HAL_DCMI_ENABLE_IT(hdcmi, DCMI_IER_FRAME_IE);                                          //使用帧中断
+//				
+//					SCB_InvalidateDCache_by_Addr((uint32_t*)RGB_Line_DATA, RGB_Width/2);  //根据地址信息，无效其对应的 cache-line
+//					
+//					HAL_DCMI_Start_DMA(hdcmi, DCMI_MODE_SNAPSHOT,(uint32_t)&RGB_Line_DATA, RGB_Width/2); 	    //启动 JPEG传输拍照
+//					
+//					HAL_DMA_Abort(&hdma_memtomem_dma1_stream0);   //需要先停止DMA工作，再设置DMA 数据源地址和目标地址
+//					
+//					HAL_DMA_Start(&hdma_memtomem_dma1_stream0, (uint32_t)&RGB_Line_DATA, (uint32_t)&RGB_DATA[curline][0], RGB_Width*2); //使用DMA转存一行数据
+//					
+//  				++curline;
+//				
+//				}
 
 		
 }
@@ -608,7 +609,7 @@ void RGB565_mode(void)
 		
 		    
 		
-    OV5640_OutSize_Set(4,0,lcddev.width,lcddev.height);		//满屏缩放显示
+    OV5640_OutSize_Set(4,0,128,128);		//满屏缩放显示
 						
     Start_OV5640_RGB(&hdcmi);  //启动传输
 			
@@ -616,10 +617,7 @@ void RGB565_mode(void)
 		
     while(1)
     {
-			if(aiflag>2)
-			{
-			aiRun(&RGB_DATA, &ai_result);
-			}
+			
 //        Key_Flag=KEY_Scan(0);   //获取键值
 //			
 //			
@@ -712,7 +710,12 @@ void RGB565_mode(void)
 					 RGB_Refresh_LCD();//根据帧数据，进行刷屏
 					 
 					 Start_OV5640_RGB(&hdcmi);  //启动传输
-				
+					 
+				if(aiflag>2)
+			{
+			aiRun(RGB_DATA, out_data);
+			}
+			
 			aiflag++;
 				 
 	    }
