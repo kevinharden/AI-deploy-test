@@ -1,7 +1,7 @@
 {
     "_allocate_inputs": 4,
     "_allocate_outputs": 4,
-    "cli_parameters": "generate --name network -m D:/GIT Repo/stm32ai-modelzoo-for-me/image_classification/scripts/training/outputs/2024_06_27_16_34_51/quantized_models/quantized_model.tflite --type tflite --compression none --verbosity 1 --workspace C:\\Users\\kevin\\AppData\\Local\\Temp\\mxAI_workspace200981029610016196645504046302353 --output C:\\Users\\kevin\\.stm32cubemx\\network_output --allocate-inputs --series stm32h7 --allocate-outputs --binary --address 0x8000000",
+    "cli_parameters": "generate --name network -m D:/GIT Repo/stm32ai-modelzoo-for-me/image_classification/scripts/training/outputs/2024_07_19_01_10_03/quantized_models/quantized_model.tflite --type tflite --compression lossless --verbosity 1 --workspace C:\\Users\\kevin\\AppData\\Local\\Temp\\mxAI_workspace2020251098390014683348933110607267 --output C:\\Users\\kevin\\.stm32cubemx\\network_output --allocate-inputs --series stm32h7 --allocate-outputs --binary --address 0x8000000",
     "cli_version": {
         "major": 1,
         "micro": 0,
@@ -13,12 +13,12 @@
         "factor": null,
         "layers": {}
     },
-    "date_time": "Wed Jul 17 10:35:04 2024",
+    "date_time": "Fri Jul 19 11:08:34 2024",
     "error": 0,
     "error_str": [],
     "exec_cmd": "generate",
     "exec_duration": 0.0,
-    "hash": "6bf22785a15d9fdc54030d6cb4e23ba0",
+    "hash": "13d6d6d810f607639fb19d58d84b1bd0",
     "inputs": [
         "serving_default_input_10"
     ],
@@ -992,13 +992,13 @@
         },
         {
             "c_id": [
-                29
+                30
             ],
             "extras": {
                 "n_macc": 0,
                 "n_params": 0,
                 "psize": 0,
-                "rom_size": 0
+                "rom_size": 1248
             },
             "id": 25,
             "inputs": [
@@ -1010,7 +1010,7 @@
         },
         {
             "c_id": [
-                30
+                29
             ],
             "extras": {
                 "n_macc": 55392,
@@ -1028,7 +1028,7 @@
                         1
                     ]
                 },
-                "rom_size": 1248
+                "rom_size": 0
             },
             "id": 26,
             "inputs": [
@@ -2659,6 +2659,20 @@
         {
             "c_id": [],
             "extras": {
+                "n_macc": 0,
+                "n_params": 8,
+                "psize": 32,
+                "rom_size": 0
+            },
+            "id": 68,
+            "inputs": [],
+            "name": "dense_bias",
+            "original": "",
+            "type": "Placeholder"
+        },
+        {
+            "c_id": [],
+            "extras": {
                 "n_macc": 10248,
                 "n_params": 0,
                 "psize": 0,
@@ -2677,7 +2691,8 @@
             "id": 68,
             "inputs": [
                 "reshape_67_reshape",
-                "mobilenet_v2_alpha_0_35_dense_MatMul"
+                "mobilenet_v2_alpha_0_35_dense_MatMul",
+                "dense_bias"
             ],
             "name": "gemm_68",
             "original": "FULLY_CONNECTED",
@@ -2741,11 +2756,11 @@
         }
     ],
     "model_files": [
-        "D:\\GIT Repo\\stm32ai-modelzoo-for-me\\image_classification\\scripts\\training\\outputs\\2024_06_27_16_34_51\\quantized_models\\quantized_model.tflite"
+        "D:\\GIT Repo\\stm32ai-modelzoo-for-me\\image_classification\\scripts\\training\\outputs\\2024_07_19_01_10_03\\quantized_models\\quantized_model.tflite"
     ],
-    "model_n_params": 399328,
+    "model_n_params": 399336,
     "model_name": "quantized_model",
-    "model_size": 420448,
+    "model_size": 420480,
     "model_type": "tflite",
     "name": "network",
     "outputs": [

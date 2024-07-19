@@ -1,6 +1,6 @@
 Dependencies for Project 'AI-Deployment-Test', Target 'AI-Deployment-Test': (DO NOT MODIFY !)
 CompilerVersion: 5060750::V5.06 update 6 (build 750)::ARMCC
-F (startup_stm32h750xx.s)(0x66972DDD)(--cpu Cortex-M7.fp.dp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"--pd "__UVISION_VERSION SETA 540" --pd "STM32H750xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32h750xx.lst --xref -o ai-deployment-test\startup_stm32h750xx.o --depend ai-deployment-test\startup_stm32h750xx.d)
+F (startup_stm32h750xx.s)(0x6699D8B9)(--cpu Cortex-M7.fp.dp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"--pd "__UVISION_VERSION SETA 540" --pd "STM32H750xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32h750xx.lst --xref -o ai-deployment-test\startup_stm32h750xx.o --depend ai-deployment-test\startup_stm32h750xx.d)
 F (..\Core\Src\OV_Frame.c)(0x6698E23F)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\ov_frame.o --omf_browse ai-deployment-test\ov_frame.crf --depend ai-deployment-test\ov_frame.d)
 I (../Core/Inc/OV_Frame.h)(0x66966B91)
 I (../Core/Inc/sccb.h)(0x66210F7D)
@@ -64,13 +64,13 @@ I (../Core/Inc/dcmi.h)(0x6607E0CB)
 I (../Core/Inc/dma.h)(0x666AB12B)
 I (../Core/Inc/delay.h)(0x66853C01)
 I (../Core/Inc/task.h)(0x66986EDD)
-I (../X-CUBE-AI/App/network.h)(0x66972DD9)
-I (../X-CUBE-AI/App/network_config.h)(0x66972DD9)
+I (../X-CUBE-AI/App/network.h)(0x6699D8B2)
+I (../X-CUBE-AI/App/network_config.h)(0x6699D8B2)
 I (../Middlewares/ST/AI/Inc/ai_platform.h)(0x65AE305E)
 I (D:\applications\Keil 5\ARM\ARMCC\include\inttypes.h)(0x599EDB3E)
 I (D:\applications\Keil 5\ARM\ARMCC\include\stdbool.h)(0x599EDB3E)
-I (../X-CUBE-AI/App/network_data_params.h)(0x66972DD9)
-I (../X-CUBE-AI/App/network_data.h)(0x66972DD9)
+I (../X-CUBE-AI/App/network_data_params.h)(0x6699D8B2)
+I (../X-CUBE-AI/App/network_data.h)(0x6699D8B2)
 F (..\Core\Src\ov5640.c)(0x66853C01)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\ov5640.o --omf_browse ai-deployment-test\ov5640.crf --depend ai-deployment-test\ov5640.d)
 I (../Core/Inc/main.h)(0x669679BA)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x650EBE1A)
@@ -458,52 +458,6 @@ I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h)(0x650EBE1A)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h)(0x650EBE1A)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h)(0x650EBE1A)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h)(0x650EBE1A)
-F (../Core/Src/gpio.c)(0x66972DCC)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\gpio.o --omf_browse ai-deployment-test\gpio.crf --depend ai-deployment-test\gpio.d)
-I (../Core/Inc/gpio.h)(0x66076AAD)
-I (../Core/Inc/main.h)(0x669679BA)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x650EBE1A)
-I (../Core/Inc/stm32h7xx_hal_conf.h)(0x66972C8B)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h)(0x650EBE1A)
-I (../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h)(0x650EBE17)
-I (../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h750xx.h)(0x650EBE17)
-I (../Drivers/CMSIS/Include/core_cm7.h)(0x650EBE1A)
-I (D:\applications\Keil 5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
-I (../Drivers/CMSIS/Include/cmsis_version.h)(0x650EBE1A)
-I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x650EBE1A)
-I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x650EBE1A)
-I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x650EBE1A)
-I (../Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h)(0x650EBE17)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x650EBE1A)
-I (D:\applications\Keil 5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
-I (D:\applications\Keil 5\ARM\ARMCC\include\math.h)(0x599EDB3E)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio_ex.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma_ex.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dcmi.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc_ex.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c_ex.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_qspi.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_sd.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_sdmmc.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_delayblock.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_sd_ex.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h)(0x650EBE1A)
-I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h)(0x650EBE1A)
 F (..\Core\Src\task.c)(0x66986EDD)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\task.o --omf_browse ai-deployment-test\task.crf --depend ai-deployment-test\task.d)
 I (../Core/Inc/task.h)(0x66986EDD)
 I (D:\applications\Keil 5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
@@ -561,7 +515,7 @@ I (../Core/Inc/sccb.h)(0x66210F7D)
 I (../Core/Inc/w25qxx.h)(0x667C1380)
 I (../Core/Inc/OV_Frame.h)(0x66966B91)
 I (../Core/Inc/sdmmc_sdcard.h)(0x662116F3)
-F (../Core/Src/main.c)(0x66990FB2)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\main.o --omf_browse ai-deployment-test\main.crf --depend ai-deployment-test\main.d)
+F (../Core/Src/main.c)(0x6699DACA)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\main.o --omf_browse ai-deployment-test\main.crf --depend ai-deployment-test\main.d)
 I (../Core/Inc/main.h)(0x669679BA)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x650EBE1A)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x66972C8B)
@@ -625,16 +579,62 @@ I (../Core/Inc/font.h)(0x6448E77D)
 I (../Core/Inc/GBK_LibDrive.h)(0x662118CF)
 I (D:\applications\Keil 5\ARM\ARMCC\include\string.h)(0x599EDB3C)
 I (../Core/Inc/OV_Frame.h)(0x66966B91)
-I (../X-CUBE-AI/App/network.h)(0x66972DD9)
-I (../X-CUBE-AI/App/network_config.h)(0x66972DD9)
+I (../X-CUBE-AI/App/network.h)(0x6699D8B2)
+I (../X-CUBE-AI/App/network_config.h)(0x6699D8B2)
 I (../Middlewares/ST/AI/Inc/ai_platform.h)(0x65AE305E)
 I (D:\applications\Keil 5\ARM\ARMCC\include\inttypes.h)(0x599EDB3E)
 I (D:\applications\Keil 5\ARM\ARMCC\include\stdbool.h)(0x599EDB3E)
-I (../X-CUBE-AI/App/network_data_params.h)(0x66972DD9)
-I (../X-CUBE-AI/App/network_data.h)(0x66972DD9)
+I (../X-CUBE-AI/App/network_data_params.h)(0x6699D8B2)
+I (../X-CUBE-AI/App/network_data.h)(0x6699D8B2)
 I (../Core/Inc/task.h)(0x66986EDD)
 I (D:\applications\Keil 5\ARM\ARMCC\include\stdio.h)(0x599EDB3C)
 I (../Core/Inc/led.h)(0x64489EB9)
+F (../Core/Src/gpio.c)(0x66972DCC)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\gpio.o --omf_browse ai-deployment-test\gpio.crf --depend ai-deployment-test\gpio.d)
+I (../Core/Inc/gpio.h)(0x66076AAD)
+I (../Core/Inc/main.h)(0x669679BA)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x650EBE1A)
+I (../Core/Inc/stm32h7xx_hal_conf.h)(0x66972C8B)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h)(0x650EBE1A)
+I (../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h)(0x650EBE17)
+I (../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h750xx.h)(0x650EBE17)
+I (../Drivers/CMSIS/Include/core_cm7.h)(0x650EBE1A)
+I (D:\applications\Keil 5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
+I (../Drivers/CMSIS/Include/cmsis_version.h)(0x650EBE1A)
+I (../Drivers/CMSIS/Include/cmsis_compiler.h)(0x650EBE1A)
+I (../Drivers/CMSIS/Include/cmsis_armcc.h)(0x650EBE1A)
+I (../Drivers/CMSIS/Include/mpu_armv7.h)(0x650EBE1A)
+I (../Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h)(0x650EBE17)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h)(0x650EBE1A)
+I (D:\applications\Keil 5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
+I (D:\applications\Keil 5\ARM\ARMCC\include\math.h)(0x599EDB3E)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio_ex.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dma_ex.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_mdma.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_dcmi.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_exti.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_cortex.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_crc_ex.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_flash_ex.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_hsem.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_i2c_ex.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pwr_ex.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_qspi.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_sd.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_sdmmc.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_delayblock.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_sd_ex.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h)(0x650EBE1A)
+I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h)(0x650EBE1A)
 F (../Core/Src/crc.c)(0x66076AAE)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\crc.o --omf_browse ai-deployment-test\crc.crf --depend ai-deployment-test\crc.d)
 I (../Core/Inc/crc.h)(0x66076AAE)
 I (../Core/Inc/main.h)(0x669679BA)
@@ -2417,7 +2417,7 @@ I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h)(0x650EBE1A)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h)(0x650EBE1A)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h)(0x650EBE1A)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h)(0x650EBE1A)
-F (../X-CUBE-AI/App/network_generate_report.txt)(0x66972DD9)()
+F (../X-CUBE-AI/App/network_generate_report.txt)(0x6699D8B2)()
 F (../Middlewares/ST/AI/Lib/NetworkRuntime810_CM7_Keil.lib)(0x65AE305E)()
 F (..\Drivers\LCD240\Dis_Picture.c)(0x667C0763)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\dis_picture.o --omf_browse ai-deployment-test\dis_picture.crf --depend ai-deployment-test\dis_picture.d)
 I (..\Drivers\LCD240\Dis_Picture.h)(0x64819111)
@@ -2626,16 +2626,16 @@ I (..\Drivers\LCD240\Text.h)(0x64819111)
 I (..\Drivers\LCD240\font.h)(0x64819111)
 I (D:\applications\Keil 5\ARM\ARMCC\include\string.h)(0x599EDB3C)
 I (../Core/Inc/usart.h)(0x66853C01)
-F (../X-CUBE-AI/App/network.c)(0x66972DD9)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\network.o --omf_browse ai-deployment-test\network.crf --depend ai-deployment-test\network.d)
-I (../X-CUBE-AI/App/network.h)(0x66972DD9)
-I (../X-CUBE-AI/App/network_config.h)(0x66972DD9)
+F (../X-CUBE-AI/App/network.c)(0x6699D8B2)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\network.o --omf_browse ai-deployment-test\network.crf --depend ai-deployment-test\network.d)
+I (../X-CUBE-AI/App/network.h)(0x6699D8B2)
+I (../X-CUBE-AI/App/network_config.h)(0x6699D8B2)
 I (../Middlewares/ST/AI/Inc/ai_platform.h)(0x65AE305E)
 I (D:\applications\Keil 5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
 I (D:\applications\Keil 5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
 I (D:\applications\Keil 5\ARM\ARMCC\include\inttypes.h)(0x599EDB3E)
 I (D:\applications\Keil 5\ARM\ARMCC\include\stdbool.h)(0x599EDB3E)
-I (../X-CUBE-AI/App/network_data.h)(0x66972DD9)
-I (../X-CUBE-AI/App/network_data_params.h)(0x66972DD9)
+I (../X-CUBE-AI/App/network_data.h)(0x6699D8B2)
+I (../X-CUBE-AI/App/network_data_params.h)(0x6699D8B2)
 I (../Middlewares/ST/AI/Inc/ai_platform_interface.h)(0x65AE305E)
 I (../Middlewares/ST/AI/Inc/datatypes_network.h)(0x65AE305E)
 I (../Middlewares/ST/AI/Inc/ai_datatypes.h)(0x65AE305D)
@@ -2683,10 +2683,10 @@ I (../Middlewares/ST/AI/Inc/layers_conv2d_dqnn.h)(0x65AE305E)
 I (../Middlewares/ST/AI/Inc/layers_dense_dqnn.h)(0x65AE305E)
 I (../Middlewares/ST/AI/Inc/layers_pool_dqnn.h)(0x65AE305E)
 I (../Middlewares/ST/AI/Inc/layers_generic_dqnn.h)(0x65AE305E)
-F (../X-CUBE-AI/App/network_data.c)(0x66972DD9)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\network_data.o --omf_browse ai-deployment-test\network_data.crf --depend ai-deployment-test\network_data.d)
-I (../X-CUBE-AI/App/network_data.h)(0x66972DD9)
-I (../X-CUBE-AI/App/network_config.h)(0x66972DD9)
-I (../X-CUBE-AI/App/network_data_params.h)(0x66972DD9)
+F (../X-CUBE-AI/App/network_data.c)(0x6699D8B2)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\network_data.o --omf_browse ai-deployment-test\network_data.crf --depend ai-deployment-test\network_data.d)
+I (../X-CUBE-AI/App/network_data.h)(0x6699D8B2)
+I (../X-CUBE-AI/App/network_config.h)(0x6699D8B2)
+I (../X-CUBE-AI/App/network_data_params.h)(0x6699D8B2)
 I (../Middlewares/ST/AI/Inc/ai_platform.h)(0x65AE305E)
 I (D:\applications\Keil 5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
 I (D:\applications\Keil 5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)
@@ -2699,8 +2699,8 @@ I (D:\applications\Keil 5\ARM\ARMCC\include\string.h)(0x599EDB3C)
 I (../Middlewares/ST/AI/Inc/ai_datatypes_format.h)(0x65AE305D)
 I (../Middlewares/ST/AI/Inc/ai_datatypes_defines.h)(0x65AE305D)
 I (../Middlewares/ST/AI/Inc/formats_list.h)(0x65AE305E)
-F (../X-CUBE-AI/App/network_data_params.c)(0x66972DD9)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\network_data_params.o --omf_browse ai-deployment-test\network_data_params.crf --depend ai-deployment-test\network_data_params.d)
-I (../X-CUBE-AI/App/network_data_params.h)(0x66972DD9)
+F (../X-CUBE-AI/App/network_data_params.c)(0x6699D8B2)(--c99 -c --cpu Cortex-M7.fp.dp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Middlewares/ST/AI/Inc -I ../X-CUBE-AI/App -I ../Drivers/LCD240-I.\RTE\_AI-Deployment-Test-I"D:\applications\Keil 5\ARM\PACK\ARM\CMSIS\6.1.0\CMSIS\Core\Include"-I"D:\applications\Keil 5\ARM\PACK\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include"-D__UVISION_VERSION="540" -DSTM32H750xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32H750xx-o ai-deployment-test\network_data_params.o --omf_browse ai-deployment-test\network_data_params.crf --depend ai-deployment-test\network_data_params.d)
+I (../X-CUBE-AI/App/network_data_params.h)(0x6699D8B2)
 I (../Middlewares/ST/AI/Inc/ai_platform.h)(0x65AE305E)
 I (D:\applications\Keil 5\ARM\ARMCC\include\stdint.h)(0x599EDB3E)
 I (D:\applications\Keil 5\ARM\ARMCC\include\stddef.h)(0x599EDB3C)

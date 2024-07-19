@@ -200,8 +200,8 @@ LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
 				
 					 RGB_Refresh_LCD();//根据帧数据，进行刷屏
 					 
-						 //copy_rgb_to_in_data();
-				
+						copy_rgb_to_in_data();
+				//ai_Init();
 						 aiRun(RGB_DATA, out_data);
 				aiRun(in_data, out_data);
 				Start_OV5640_RGB(&hdcmi);  //启动传输
