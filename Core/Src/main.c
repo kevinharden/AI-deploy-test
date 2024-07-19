@@ -194,17 +194,17 @@ LCD_Init();            //初始化2.0寸 240x320 高清屏  LCD显示
 	HAL_GPIO_TogglePin(LED_G_GPIO_Port,LED_G_Pin);
 	Camera_Init();
 	
-	OV_Camera_Demo(1);//选择摄像头工作模式演示	
+	OV_Camera_Demo(1);//set camera	
 	while(1)
-			{  LED2_Toggle;//LED灯闪 提示系统在运行					
+			{  LED2_Toggle;			
 				
-					 RGB_Refresh_LCD();//根据帧数据，进行刷屏
+					 RGB_Refresh_LCD();
 					 
 						copy_rgb_to_in_data();
-				//ai_Init();
-						 aiRun(RGB_DATA, out_data);
+			
+						 //aiRun(RGB_DATA, out_data);//I tried both but didn't help
 				aiRun(in_data, out_data);
-				Start_OV5640_RGB(&hdcmi);  //启动传输
+				Start_OV5640_RGB(&hdcmi);  //Start DCMI Snapshot
 }				
 	//copy_rgb_to_in_data();
 			
@@ -446,7 +446,7 @@ if((rx_data[0]==1)&&(rx_data[1]==1)&&(rx_data[2]==0)&&(rx_data[3]==5)&&(Mode_Fla
 
 }
 
-/*神经网络初始化*/
+/*AI Init*/
 int ai_Init(void)
 {
 	ai_error err;
@@ -465,7 +465,7 @@ int ai_Init(void)
 	return 0;
 }
 
-/*AI 运行处理函数*/
+/*AI process*/
 int aiRun(const void *in_data, void *out_data)
 {
 	ai_i32 n_batch;
@@ -483,25 +483,25 @@ int aiRun(const void *in_data, void *out_data)
 	return 0;
 	
 }
-/*RGB数据转移*/
+/*RGB preprocess*/
 void copy_rgb_to_in_data() 
 	{
      int index = 0;
     for (int i = 0; i < RGB_Height; i++) {
         for (int j = 0; j < RGB_Width; j++) {
-            // 提取RGB值
+            // separate R G B 
             uint16_t pixel = RGB_DATA[i][j];
-            uint8_t r = (pixel >> 11) & 0x1F;  // 假设RGB565格式，提取红色分量
-            uint8_t g = (pixel >> 5) & 0x3F;   // 提取绿色分量
-            uint8_t b = pixel & 0x1F;          // 提取蓝色分量
+            uint8_t r = (pixel >> 11) & 0x1F;  // in RGB565
+            uint8_t g = (pixel >> 5) & 0x3F;   
+            uint8_t b = pixel & 0x1F;          
 
-            // 将RGB值按顺序存入in_data
+            //put RGB to in_data
             if (index < AI_NETWORK_IN_1_SIZE - CHANNELS + 1) {
-                in_data[index++] = (ai_float)r / 31.0f;   // 归一化到[0, 1]
-                in_data[index++] = (ai_float)g / 63.0f;   // 归一化到[0, 1]
-                in_data[index++] = (ai_float)b / 31.0f;   // 归一化到[0, 1]
+                in_data[index++] = (ai_float)r / 31.0f;   //turn to float
+                in_data[index++] = (ai_float)g / 63.0f;   
+                in_data[index++] = (ai_float)b / 31.0f;  
             } else {
-                // 如果in_data的大小小于RGB_DATA的总元素数，跳出循环
+                // if in_data is smaller than RGB_DATA ,break
                 break;
             }
         }
